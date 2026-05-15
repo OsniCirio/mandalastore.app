@@ -1,0 +1,56 @@
+<div class="container mt-5">
+
+  <h1 class="mb-4">
+
+    Meu Carrinho
+
+  </h1>
+
+  <div class="card mb-3"
+       *ngFor="let item of items">
+
+    <div class="card-body d-flex">
+
+      <img [src]="apiUrl + item.imagemUrl"
+           width="100"
+           class="rounded">
+
+      <div class="ms-3 flex-grow-1">
+
+        <h5>
+
+          {{ item.nome }}
+
+        </h5>
+
+        <div>
+
+          Quantidade:
+          {{ item.quantidade }}
+
+        </div>
+
+        <div class="fw-bold text-success">
+
+          {{ item.valor | currency:'R$ ' }}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="text-end">
+
+    <h3>
+
+      Total:
+      {{ total | currency:'BRL' }}
+
+    </h3>
+
+  </div>
+
+</div>

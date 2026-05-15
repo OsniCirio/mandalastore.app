@@ -1,0 +1,77 @@
+
+
+
+:root {
+  --primary: #7b8d74;
+  --primary-soft: #aab7a2;
+  --rose: #d8b7ae;
+  --cream: #f6f2ed;
+  --surface: #ffffff;
+  --gold: #b89b72;
+  --text: #4a4a4a;
+  --shadow: 0 8px 30px rgba(0,0,0,0.04);
+}
+
+
+
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  margin: 0;
+}
+
+
+/* =========================
+   TITULOS
+========================= */
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  color: #5e6659;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.btn-mandala {
+  background: white;
+  color: var(--text);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 40px;
+  padding: 12px 28px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+  .btn-mandala:hover {
+    background: var(--cream);
+    transform: translateY(-1px);
+  }
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card-mandala {
+  background: white;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

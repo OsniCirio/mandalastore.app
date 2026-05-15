@@ -1,0 +1,426 @@
+.hero {
+  min-height: 92vh;
+  background: linear-gradient( rgba(246,242,237,0.72), rgba(246,242,237,0.72) ), url('/assets/images/bg-mandala.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+.hero-overlay {
+  width: 100%;
+}
+
+.hero-small {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+}
+
+.hero-title {
+  font-size: 5rem;
+  color: #5e6659;
+  margin-bottom: 20px;
+}
+
+.hero-description {
+  max-width: 700px;
+  margin: auto;
+  font-size: 1.1rem;
+  line-height: 2;
+  color: #666;
+}
+
+.hero-buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+/* BOTÕES */
+
+.btn-outline-soft {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 40px;
+  padding: 12px 28px;
+}
+
+
+/* FRASE */
+
+.quote-section {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.quote-text {
+  font-size: 2.3rem;
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.8;
+  color: #6a6a6a;
+}
+
+
+/* PRODUTOS */
+
+.products-section {
+  padding: 100px 20px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-small {
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-title {
+  font-size: 3rem;
+}
+
+.product-image {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+}
+
+.product-content {
+  padding: 30px;
+}
+
+  .product-content h3 {
+    margin-bottom: 16px;
+  }
+
+  .product-content p {
+    color: #777;
+    line-height: 1.8;
+  }
+.gallery-section {
+  padding: 120px 20px;
+}
+
+.pinterest-grid {
+  columns: 3 280px;
+  column-gap: 24px;
+}
+
+.grid-item {
+  break-inside: avoid;
+  margin-bottom: 24px;
+  overflow: hidden;
+  border-radius: 28px;
+  position: relative;
+  box-shadow: var(--shadow);
+  background: white;
+}
+
+  .grid-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.6s ease, filter 0.6s ease;
+  }
+
+  .grid-item:hover img {
+    transform: scale(1.03);
+    filter: brightness(1.02);
+  }
+
+
+  /* tamanhos variados */
+
+  .grid-item.tall img {
+    height: 620px;
+    object-fit: cover;
+  }
+
+  .grid-item.wide img {
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .grid-item:not(.tall):not(.wide) img {
+    height: 420px;
+    object-fit: cover;
+  }
+
+
+/* RESPONSIVO */
+
+@media(max-width: 768px) {
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .quote-text {
+    font-size: 1.6rem;
+  }
+
+  .pinterest-grid {
+    columns: 1;
+  }
+}
+/* =========================================
+   GRID
+========================================= */
+
+.products-grid {
+  padding: 10px 0;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.mandala-card {
+  background: #fff;
+  border: none;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: .35s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  height: 100%;
+}
+
+  .mandala-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 35px rgba(0,0,0,.12);
+  }
+
+
+/* =========================================
+   IMAGEM
+========================================= */
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: #f7f4ef;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+  padding-right:10px;
+}
+
+.mandala-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: .4s ease;
+}
+
+
+/* zoom suave */
+
+.mandala-card:hover .mandala-img {
+  transform: scale(1.06);
+}
+
+
+/* =========================================
+   FAVORITO
+========================================= */
+
+.favorite-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #5d4037;
+  box-shadow: 0 3px 10px rgba(0,0,0,.12);
+  transition: .3s;
+}
+
+  .favorite-btn:hover {
+    transform: scale(1.08);
+    color: #7a9b52;
+  }
+
+
+/* =========================================
+   BODY
+========================================= */
+
+.card-content {
+  padding: 10px;
+}
+
+
+/* categoria */
+
+.mandala-category {
+  font-size: .9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #7a9b52;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.toast-container {
+  z-index: 999999 !important;
+  position: fixed !important;
+}
+
+.ngx-toastr {
+  z-index: 999999 !important;
+}
+/* titulo */
+
+.mandala-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2f2f2f;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+
+/* preço */
+
+.mandala-price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #6d8f45;
+  margin-bottom: 10px;
+}
+
+
+/* linha */
+
+.card-divider {
+  width: 100%;
+  height: 1px;
+  background: #ece7df;
+  margin-bottom: 5px;
+}
+
+
+/* =========================================
+   AÇÕES
+========================================= */
+
+.card-actions {
+  display: flex;
+  gap: 16px;
+}
+
+
+/* botão detalhes */
+
+.btn-details {
+  flex: 1;
+  height: 58px;
+  border-radius: 16px;
+  border: 2px solid #7a9b52;
+  background: white;
+  color: #5c6f3d;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: .3s;
+  text-decoration: none;
+}
+
+  .btn-details:hover {
+    background: #f5f8f1;
+    transform: translateY(-2px);
+  }
+
+
+/* botão carrinho */
+
+.btn-cart {
+  width: 72px;
+  height: 58px;
+  border-radius: 16px;
+  border: none;
+  background: #6d8f45;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s;
+}
+
+  .btn-cart:hover {
+    background: #59753a;
+    transform: translateY(-2px);
+  }
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media(max-width: 768px) {
+
+  .image-wrapper {
+    height: 260px;
+   }
+
+  .mandala-title {
+    font-size: 1.6rem;
+  }
+
+  .mandala-price {
+    font-size: 1.2rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+  }
+
+  .btn-cart {
+    width: 100%;
+  }
+}
+/* =========================================
+   TOAST FIX
+========================================= */
+
+#toast-container {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+}
+
+.toast-container {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+}
+
+.ngx-toastr {
+  opacity: 1 !important;
+  z-index: 2147483647 !important;
+}

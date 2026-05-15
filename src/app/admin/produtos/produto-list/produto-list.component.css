@@ -1,0 +1,44 @@
+.mandala-card {
+  border: none;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: .3s;
+  background: #fff;
+}
+
+  .mandala-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.15);
+  }
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.mandala-img {
+  height: 280px;
+  width: 100%;
+  object-fit: cover;
+  transition: .4s;
+}
+
+.mandala-card:hover .mandala-img {
+  transform: scale(1.05);
+}
+
+.badge-custom {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  border-radius: 12px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+}
+
+.btn-group .btn {
+  border-radius: 10px;
+}

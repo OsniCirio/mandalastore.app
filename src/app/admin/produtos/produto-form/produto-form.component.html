@@ -1,0 +1,181 @@
+<div class="form-page">
+
+  <div class="form-header">
+    <div>
+      <p class="section-small">Administração</p>
+
+      <h1 class="section-title">
+        {{ editMode ? 'Editar Mandala' : 'Nova Mandala' }}
+      </h1>
+    </div>
+
+    <a routerLink="/admin/produtos" class="btn-outline-soft">
+      Voltar
+    </a>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+
+    <div class="row g-4">
+
+      <div class="col-lg-8">
+
+        <div class="form-card">
+
+          <div class="mb-3">
+            <label>Nome</label>
+            <input class="form-control input-soft" formControlName="nome">
+          </div>
+
+          <div class="mb-3">
+            <label>Descrição</label>
+            <textarea rows="5" class="form-control input-soft" formControlName="descricao"></textarea>
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+              <label>Categoria</label>
+              <input class="form-control input-soft" formControlName="categoria">
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label>Preço</label>
+              <input type="number" class="form-control input-soft" formControlName="preco">
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label>Estoque</label>
+              <input type="number" class="form-control input-soft" formControlName="estoque">
+            </div>
+
+          </div>
+
+          <div class="form-check mt-3">
+            <input type="checkbox" class="form-check-input" formControlName="ativo">
+            <label class="form-check-label">
+              Produto ativo
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-4">
+
+        <div class="form-card">
+
+          <h3>Imagem da Mandala</h3>
+
+          <div class="image-preview" *ngIf="previewImage">
+            <img [src]="previewImage">
+          </div>
+
+          <label class="upload-box">
+            <div class="upload-container"
+                 (dragover)="onDragOver($event)"
+                 (drop)="onDrop($event)">
+
+              <!-- PREVIEW -->
+
+              <div class="image-preview"
+                   *ngIf="previewImage">
+
+                <img [src]="getImageUrl()">
+
+                <div class="image-overlay">
+
+                  <button type="button"
+                          class="overlay-btn"
+                          (click)="removeImage()">
+
+                    Remover
+
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <!-- EMPTY -->
+
+              <label class="upload-box"
+                     *ngIf="!previewImage">
+
+                <input type="file"
+                       hidden
+                       accept="image/*"
+                       capture="environment"
+                       (change)="onFileSelected($event)">
+
+                <div class="upload-content">
+
+                  <div class="camera-icon">
+
+                    📷
+
+                  </div>
+
+                  <h4>
+                    Envie uma imagem
+                  </h4>
+
+                  <p>
+                    Clique, arraste ou use a câmera
+                  </p>
+
+                </div>
+
+              </label>
+
+            </div>
+          </label>
+
+          <button type="button"
+                  class="btn-camera"
+                  (click)="startCamera()">
+            Usar câmera
+          </button>
+
+          <div class="camera-box" *ngIf="cameraActive">
+
+            <video #video
+                   autoplay
+                   playsinline>
+            </video>
+
+            <button type="button"
+                    class="btn-capture"
+                    (click)="capturePhoto()">
+              Capturar Foto
+            </button>
+
+            <button type="button"
+                    class="btn-cancel"
+                    (click)="stopCamera()">
+              Cancelar
+            </button>
+
+          </div>
+
+          <canvas #canvas hidden></canvas>
+
+          <button type="submit"
+                  class="btn-save"
+                  [disabled]="loading">
+
+            {{ loading ? 'Salvando...' : 'Salvar Produto' }}
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,22 @@
+.dashboard-header {
+  margin-bottom: 50px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 24px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: var(--shadow);
+}
+
+  .stat-card h3 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #5e6659;
+  }

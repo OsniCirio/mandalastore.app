@@ -1,0 +1,65 @@
+.brand-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--primary);
+}
+
+.navbar-custom {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  padding: 18px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.brand-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.brand-sub {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.nav-link {
+  color: #444;
+  font-weight: 500;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+  .nav-link:hover {
+    color: var(--primary);
+  }
+
+.btn-mandala {
+  background: var(--primary);
+  color: white;
+  border-radius: 30px;
+  padding: 10px 24px;
+  border: none;
+  transition: 0.3s;
+}
+
+  .btn-mandala:hover {
+    background: #4f6953;
+    transform: translateY(-2px);
+  }
+
+.btn-outline-mandala {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: 30px;
+  padding: 10px 24px;
+}
+
+  .btn-outline-mandala:hover {
+    background: var(--primary);
+    color: white;
+  }

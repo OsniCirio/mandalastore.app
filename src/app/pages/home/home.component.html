@@ -1,0 +1,213 @@
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-overlay">
+
+      <div class="container text-center">
+
+        <p class="hero-small">
+          Arte • Energia • Harmonia
+        </p>
+
+        <h1 class="hero-title">
+          Mandalas Artesanais
+        </h1>
+
+        <p class="hero-description">
+
+          Peças únicas criadas para
+          transformar ambientes,
+          elevar energias e inspirar
+          equilíbrio.
+
+        </p>
+
+        <div class="hero-buttons">
+
+          <button class="btn-mandala">
+            Explorar Coleção
+          </button>
+
+          <button class="btn-outline-soft">
+            Sobre Nós
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FRASE -->
+  <section class="quote-section">
+
+    <div class="container">
+
+      <p class="quote-text">
+
+        “Cada mandala carrega intenção,
+        equilíbrio e conexão.”
+
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUTOS -->
+  <section class="products-section">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <p class="section-small">
+          Coleção
+        </p>
+
+        <h2 class="section-title">
+          Mandalas em Destaque
+        </h2>
+
+      </div>
+
+       
+      <div class="products-grid">
+
+        <div class="row g-4">
+
+          <div class="col-12 col-sm-6 col-lg-3"
+               *ngFor="let item of produtos">
+
+            <!-- CARD -->
+            <div class="mandala-card">
+
+              <!-- IMAGEM -->
+              <div class="image-wrapper">
+
+                <img [src]="uploadsUrl + item.imagemUrl"
+                     [alt]="item.nome"
+                     class="mandala-img">
+
+                <!-- FAVORITO -->
+                <button class="favorite-btn">
+
+                  <i class="bi bi-heart"></i>
+
+                </button>
+
+              </div>
+
+              <!-- CONTEÚDO -->
+              <div class="card-content">
+
+                <!-- CATEGORIA -->
+                <div class="mandala-category">
+
+                  {{ item.categoria }}
+
+                </div>
+
+                <!-- TÍTULO -->
+                <h2 class="mandala-title">
+
+                  {{ item.nome }}
+
+                </h2>
+
+                <!-- PREÇO -->
+                <div class="mandala-price">
+
+                  {{ item.preco | currency:'R$ ' }}
+
+                </div>
+
+                <!-- LINHA -->
+                <div class="card-divider"></div>
+
+                <!-- AÇÕES -->
+                <div class="card-actions">
+
+                  <!-- DETALHES -->
+                  <button  class="btn-details" (click)="abrirproduto(item)">
+
+                  <i class="bi bi-eye"></i>
+
+                  Ver detalhes
+
+                  </button>
+
+                  <!-- CARRINHO -->
+                  <button class="btn-cart"
+                          (click)="adicionarCarrinho(item)">
+
+                    <i class="bi bi-cart"></i>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+   </div>
+
+  </section>
+  <section class="gallery-section">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <p class="section-small">
+          Inspiração
+        </p>
+
+        <h2 class="section-title">
+          Galeria Artesanal
+        </h2>
+
+      </div>
+
+      <div class="pinterest-grid">
+
+        <div class="grid-item">
+          <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1200">
+        </div>
+
+        <div class="grid-item tall">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200">
+        </div>
+
+        <div class="grid-item">
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200">
+        </div>
+
+        <div class="grid-item wide">
+          <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200">
+        </div>
+
+        <div class="grid-item">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200">
+        </div>
+
+        <div class="grid-item tall">
+          <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200">
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
