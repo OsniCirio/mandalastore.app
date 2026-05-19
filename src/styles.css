@@ -2,3 +2,4 @@
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap');
 @import './styles/theme.css';
+@import 'ngx-toastr/toastr';

@@ -3,72 +3,149 @@ import { Injectable } from '@angular/core';
 import { CartItem }
   from '../../models/cart-item.model';
 
+import { BehaviorSubject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  private storageKey = 'cart';
+  private storageKey = 'mandala-car';
 
-  getItems(): CartItem[] {
+  cartCount = new BehaviorSubject<number>(0);
 
-    return JSON.parse(
-      localStorage.getItem(this.storageKey) || '[]'
-    );
+  getCart(): any[] {
+
+    const cart =
+      localStorage.getItem(this.storageKey);
+
+    return cart ? JSON.parse(cart) : [];
   }
 
-  add(item: CartItem): void {
+  saveCart(cart: any[]) {
 
-    const items = this.getItems();
+    localStorage.setItem(
+      this.storageKey,
+      JSON.stringify(cart)
+    );
+  }
+  updateCartCount() {
 
-    const existing =
-      items.find(x => x.id === item.id);
+    const cart = this.getCart();
 
-    if (existing) {
+    const total = cart.reduce(
 
-      existing.quantidade++;
-    }
-    else {
+      (sum, item) =>
 
-      items.push({
-        ...item,
+        sum + item.quantidade,
+
+      0
+    );
+
+    this.cartCount.next(total);
+  }
+  addItem(produto: any) {
+
+    const cart = this.getCart();
+
+    const item =
+      cart.find(x => x.id === produto.id);
+
+    if (item) {
+
+      item.quantidade++;
+
+    } else {
+
+      cart.push({
+
+        id: produto.id,
+
+        nome: produto.nome,
+
+        valor: produto.preco,
+
+        imagemUrl: produto.imagemUrl,
+
+        categoria: produto.categoria,
+
+        descricao: produto.descricao,
+
         quantidade: 1
       });
     }
 
-    localStorage.setItem(
-      this.storageKey,
-      JSON.stringify(items)
-    );
+    this.saveCart(cart);
+    this.updateCartCount();
   }
 
-  remove(id: string): void {
+  increase(produtoId: string) {
 
-    const items =
-      this.getItems()
-        .filter(x => x.id !== id);
+    const cart = this.getCart();
 
-    localStorage.setItem(
-      this.storageKey,
-      JSON.stringify(items)
-    );
+    const item =
+      cart.find(x => x.id === produtoId);
+
+    if (item) {
+
+      item.quantidade++;
+
+      this.saveCart(cart);
+      this.updateCartCount();
+    }
   }
 
-  clear(): void {
+  decrease(produtoId: string) {
 
-    localStorage.removeItem(
-      this.storageKey
-    );
+    let cart = this.getCart();
+
+    const item =
+      cart.find(x => x.id === produtoId);
+
+    if (!item)
+      return;
+
+    item.quantidade--;
+
+    if (item.quantidade <= 0) {
+
+      cart = cart.filter(
+        x => x.id !== produtoId
+      );
+    }
+
+    this.saveCart(cart);
+    this.updateCartCount();
+  }
+
+  remove(produtoId: string) {
+
+    const cart =
+      this.getCart()
+        .filter(x => x.id !== produtoId);
+
+    this.saveCart(cart);
+  }
+
+  clear() {
+
+    localStorage.removeItem(this.storageKey);
   }
 
   getTotal(): number {
 
-    return this.getItems()
-      .reduce((total, item) => {
+    const cart = this.getCart();
 
-        return total +
-          (item.valor * item.quantidade);
+    return cart.reduce(
 
-      }, 0);
+      (total, item) =>
+
+        total + (
+          item.valor * item.quantidade
+        ),
+
+      0
+    );
   }
+
 }

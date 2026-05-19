@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './layout/navbar/navbar.component';
+import { CartDrawerComponent } from './pages/cart-drawer/cart-drawer.component';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 
   imports: [
     RouterOutlet,
-    NavbarComponent
+    NavbarComponent,
+    CartDrawerComponent
   ],
 
   templateUrl: './app.html'

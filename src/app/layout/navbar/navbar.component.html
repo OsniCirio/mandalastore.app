@@ -32,7 +32,7 @@
       <ul class="navbar-nav ms-auto align-items-center gap-3">
 
         <li class="nav-item">
-          <a class="nav-link">
+          <a class="nav-link"  routerLink="/">
             Início
           </a>
         </li>
@@ -65,8 +65,18 @@
 
         <li class="nav-item">
 
-          <button class="btn btn-mandala" routerLink="cart">
-            Comprar
+          <button class="btn-cart-navbar"
+                  (click)="openCart()">
+
+            <i class="bi bi-cart3"></i>
+
+            <span *ngIf="cartCount > 0"
+                  class="cart-badge">
+
+              {{ cartCount }}
+
+            </span>
+
           </button>
 
         </li>

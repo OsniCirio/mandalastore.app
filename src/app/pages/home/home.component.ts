@@ -10,8 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   imports: [CommonModule,
-    RouterModule,
-    RouterLink],
+    RouterModule],
 
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -21,6 +20,7 @@ export class HomeComponent implements OnInit {
   produtos: any[] = [];
   loading = false;
   uploadsUrl = environment.uploadsUrl;
+  produtoAdicionado: string | null = null;
 
   ngOnInit(): void {
 
@@ -67,21 +67,17 @@ export class HomeComponent implements OnInit {
   adicionarCarrinho(item: any): void {
 
 
-    this.cartService.add({
+    this.cartService.addItem(item);
 
-      id: item.id,
+    this.produtoAdicionado =
+      item.id;
 
-      nome: item.nome,
+    setTimeout(() => {
 
-      valor: item.valor,
+      this.produtoAdicionado = null;
+      this.cd.detectChanges();
 
-      imagemUrl: item.imagemUrl,
-
-      quantidade: 1
-    });
-
-    this.toastr.success(
-      'Produto adicionado ao carrinho'
-    );
+    }, 2000);
   }
+  
 }

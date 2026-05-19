@@ -54,18 +54,6 @@ h1, h2, h3, h4, h5 {
   }
 
 
-/* =========================
-   CARDS
-========================= */
-
-.card-mandala {
-  background: white;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(0,0,0,0.03);
-}
-
 
 /* =========================
    LINKS
@@ -74,4 +62,121 @@ h1, h2, h3, h4, h5 {
 a {
   text-decoration: none;
   color: inherit;
+}
+/* =========================
+   CARD
+========================= */
+
+.card-mandala {
+  background: #fff;
+  border-radius: 28px;
+  overflow: hidden;
+  transition: .3s ease;
+  box-shadow: 0 4px 18px rgba(0,0,0,.06);
+  height: 100%;
+}
+
+  .card-mandala:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.12);
+  }
+
+/* =========================
+   IMAGEM
+========================= */
+
+.img-mandala {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transition: .4s;
+}
+
+.card-mandala:hover .img-mandala {
+  transform: scale(1.03);
+}
+
+/* =========================
+   TITULOS
+========================= */
+
+.mandala-category {
+  color: #82936b;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.mandala-title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #2f2f2f;
+}
+
+.mandala-price {
+  color: #7b9258;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+.btn-outline-mandala {
+  border: 2px solid #7b9258;
+  color: #7b9258;
+  border-radius: 18px;
+  padding: 14px;
+  font-weight: 600;
+  transition: .3s;
+}
+
+  .btn-outline-mandala:hover {
+    background: #7b9258;
+    color: white;
+  }
+
+.btn-cart {
+  background: #7b9258;
+  color: white;
+  border: none;
+  width: 65px;
+  border-radius: 18px;
+  transition: .3s;
+}
+
+  .btn-cart:hover {
+    transform: scale(1.05);
+    opacity: .95;
+  }
+.toast-container {
+  z-index: 999999 !important;
+}
+.add-feedback {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 14px;
+  display: flex;
+  position:absolute;
+  align-items: center;
+  gap: 8px;
+  animation: fadeIn .3s ease;
+  z-index:9999;
+}
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

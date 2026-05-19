@@ -17,100 +17,59 @@
     <div class="row g-5">
 
       <!-- PRODUTOS -->
-      <div class="col-lg-8">
+      <div class="col-lg-7">
+
 
         <!-- ITEM -->
-        <div class="cart-item">
+        <div class="cart-item"
+             *ngFor="let item of items">
 
-          <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1200"
+          <img [src]="apiUrl + item.imagemUrl"
+               width="100"
                class="cart-image">
 
           <div class="cart-content">
 
             <p class="cart-category">
-              Coleção Harmonia
+              {{ item.categoria }}
             </p>
 
             <h3>
-              Mandala Aurora
+              {{ item.nome }}
+
             </h3>
 
             <p class="cart-description">
 
-              Produção artesanal
-              premium em madeira.
+              {{ item.descricao }}
 
             </p>
+            <div class="cart-price">
+
+              {{ item.valor | currency:'R$ ' }}
+            </div>
 
             <div class="quantity-control">
 
-              <button>-</button>
+              <button (click)="Qtde(item.id,-1)">-</button>
 
-              <span>1</span>
+              <span> {{ item.quantidade }}</span>
 
-              <button>+</button>
+              <button (click)="Qtde(item.id,1)">+</button>
 
             </div>
 
           </div>
 
-          <div class="cart-price">
-
-            R$ 289,00
-
-          </div>
-
         </div>
 
-
-        <!-- ITEM -->
-        <div class="cart-item">
-
-          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200"
-               class="cart-image">
-
-          <div class="cart-content">
-
-            <p class="cart-category">
-              Coleção Essence
-            </p>
-
-            <h3>
-              Mandala Essence
-            </h3>
-
-            <p class="cart-description">
-
-              Acabamento artesanal
-              sofisticado.
-
-            </p>
-
-            <div class="quantity-control">
-
-              <button>-</button>
-
-              <span>1</span>
-
-              <button>+</button>
-
-            </div>
-
-          </div>
-
-          <div class="cart-price">
-
-            R$ 349,00
-
-          </div>
-
-        </div>
 
       </div>
 
 
+
       <!-- RESUMO -->
-      <div class="col-lg-4">
+      <div class="col-lg-5">
 
         <div class="summary-card">
 
@@ -122,7 +81,7 @@
 
             <span>Subtotal</span>
 
-            <span>R$ 638,00</span>
+            <span> {{ total | currency:'R$ ' }}</span>
 
           </div>
 
@@ -130,7 +89,7 @@
 
             <span>Frete</span>
 
-            <span>R$ 29,00</span>
+            <span>{{ frete | currency:'R$ ' }}</span>
 
           </div>
 
@@ -138,7 +97,7 @@
 
             <span>Total</span>
 
-            <span>R$ 667,00</span>
+            <span> {{ totalcompra | currency:'R$ ' }}</span>
 
           </div>
 
@@ -155,7 +114,7 @@
           </div>
 
           <!-- FINALIZAR -->
-          <button class="checkout-btn" routerLink="/checkout" >
+          <button class="checkout-btn" routerLink="/checkout">
 
             Finalizar Compra
 
@@ -166,7 +125,7 @@
       </div>
 
     </div>
-
   </div>
+
 
 </section>

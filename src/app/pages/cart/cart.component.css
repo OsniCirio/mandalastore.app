@@ -41,6 +41,9 @@
   border-radius: 24px;
 }
 
+.section-title {
+  font-size: 4rem;
+}
 
 /* CONTEÚDO */
 
@@ -134,7 +137,7 @@
 /* CUPOM */
 
 .coupon-box {
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   gap: 12px;
 }
@@ -143,7 +146,7 @@
     flex: 1;
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 40px;
-    padding: 14px 20px;
+    padding: 10px 10px;
     outline: none;
   }
 

@@ -84,64 +84,120 @@
                *ngFor="let item of produtos">
 
             <!-- CARD -->
-            <div class="mandala-card">
+            <!--<div class="mandala-card">-->
 
               <!-- IMAGEM -->
-              <div class="image-wrapper">
+              <!--<div class="image-wrapper">
 
                 <img [src]="uploadsUrl + item.imagemUrl"
                      [alt]="item.nome"
-                     class="mandala-img">
+                     class="mandala-img">-->
 
                 <!-- FAVORITO -->
-                <button class="favorite-btn">
+                <!--<button class="favorite-btn">
 
                   <i class="bi bi-heart"></i>
 
                 </button>
 
-              </div>
+              </div>-->
 
               <!-- CONTEÚDO -->
-              <div class="card-content">
+              <!--<div class="card-content">-->
 
                 <!-- CATEGORIA -->
+                <!--<div class="mandala-category">
+
+                  {{ item.categoria }}
+
+                </div>-->
+
+                <!-- TÍTULO -->
+                <!--<h2 class="mandala-title">
+
+                  {{ item.nome }}
+
+                </h2>-->
+
+                <!-- PREÇO -->
+                <!--<div class="mandala-price">
+
+                  {{ item.preco | currency:'R$ ' }}
+
+                </div>-->
+
+                <!-- LINHA -->
+                <!--<div class="card-divider"></div>-->
+
+                <!-- AÇÕES -->
+                <!--<div class="card-actions">-->
+
+                  <!-- DETALHES -->
+                  <!--<button class="btn-details" (click)="abrirproduto(item)">
+
+                    <i class="bi bi-eye"></i>
+
+                    Ver detalhes
+
+                  </button>-->
+
+                  <!-- CARRINHO -->
+                  <!--<button class="btn-cart"
+                          (click)="adicionarCarrinho(item)">
+
+                    <i class="bi bi-cart"></i>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>-->
+
+            <div class="card-mandala">
+
+              <img [src]="uploadsUrl + item.imagemUrl"
+                   [alt]="item.nome"
+                    class="img-mandala">
+
+              <div class="p-3">
+
                 <div class="mandala-category">
 
                   {{ item.categoria }}
 
                 </div>
 
-                <!-- TÍTULO -->
-                <h2 class="mandala-title">
+                <h3 class="mandala-title">
 
                   {{ item.nome }}
 
-                </h2>
+                </h3>
 
-                <!-- PREÇO -->
-                <div class="mandala-price">
+                <div class="mandala-price mb-3">
 
-                  {{ item.preco | currency:'R$ ' }}
+                  {{ item.preco  | currency:'R$ ' }}
 
                 </div>
 
-                <!-- LINHA -->
-                <div class="card-divider"></div>
+                <div class="d-flex gap-2">
 
-                <!-- AÇÕES -->
-                <div class="card-actions">
+                  <button class="btn-outline-mandala flex-grow-1" (click)="abrirproduto(item)">
 
-                  <!-- DETALHES -->
-                  <button  class="btn-details" (click)="abrirproduto(item)">
+                    <i class="bi bi-eye"></i>
 
-                  <i class="bi bi-eye"></i>
-
-                  Ver detalhes
+                    Ver detalhes
 
                   </button>
+                  <div *ngIf="produtoAdicionado === item.id"
+                       class="add-feedback">
 
-                  <!-- CARRINHO -->
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    Adicionado ao carrinho
+
+                  </div>
                   <button class="btn-cart"
                           (click)="adicionarCarrinho(item)">
 

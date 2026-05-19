@@ -1,135 +1,138 @@
-<section class="checkout-page">
+<div class="container mt-5">
 
-  <div class="container">
+  <div class="row">
 
-    <div class="checkout-header">
-      <p class="section-small">Finalização</p>
-      <h1 class="section-title">Checkout</h1>
-    </div>
+    <!-- FORM -->
 
-    <div class="row g-5">
+    <div class="col-md-7">
 
-      <div class="col-lg-8">
+      <div class="card-mandala p-4">
 
-        <div class="checkout-card">
+        <h2 class="mb-4">
 
-          <h3>Dados pessoais</h3>
+          Finalizar Pedido
 
-          <div class="row g-3">
-            <div class="col-md-6">
-              <input class="form-control input-soft" placeholder="Nome completo">
-            </div>
+        </h2>
 
-            <div class="col-md-6">
-              <input class="form-control input-soft" placeholder="E-mail">
-            </div>
+        <form [formGroup]="form">
 
-            <div class="col-md-6">
-              <input class="form-control input-soft" placeholder="Telefone / WhatsApp">
-            </div>
+          <div class="mb-3">
 
-            <div class="col-md-6">
-              <input class="form-control input-soft" placeholder="CPF">
-            </div>
-          </div>
-
-        </div>
-
-        <div class="checkout-card">
-
-          <h3>Endereço de entrega</h3>
-
-          <div class="row g-3">
-            <div class="col-md-4">
-              <input class="form-control input-soft" placeholder="CEP">
-            </div>
-
-            <div class="col-md-8">
-              <input class="form-control input-soft" placeholder="Rua">
-            </div>
-
-            <div class="col-md-4">
-              <input class="form-control input-soft" placeholder="Número">
-            </div>
-
-            <div class="col-md-8">
-              <input class="form-control input-soft" placeholder="Complemento">
-            </div>
-
-            <div class="col-md-6">
-              <input class="form-control input-soft" placeholder="Cidade">
-            </div>
-
-            <div class="col-md-6">
-              <input class="form-control input-soft" placeholder="Estado">
-            </div>
-          </div>
-
-        </div>
-
-        <div class="checkout-card">
-
-          <h3>Forma de pagamento</h3>
-
-          <div class="payment-options">
-
-            <label class="payment-option">
-              <input type="radio" name="payment" checked>
-              <span>Pix</span>
+            <label>
+              Nome
             </label>
 
-            <label class="payment-option">
-              <input type="radio" name="payment">
-              <span>Cartão de crédito</span>
-            </label>
-
-            <label class="payment-option">
-              <input type="radio" name="payment">
-              <span>Boleto</span>
-            </label>
+            <input class="form-control"
+                   formControlName="nomeCliente">
 
           </div>
 
-        </div>
+          <div class="mb-3">
+
+            <label>
+              Telefone
+            </label>
+
+            <input class="form-control"
+                   formControlName="telefone">
+
+          </div>
+
+          <div class="mb-3">
+
+            <label>
+              E-mail
+            </label>
+
+            <input class="form-control"
+                   formControlName="email">
+
+          </div>
+
+          <div class="mb-3">
+
+            <label>
+              Endereço
+            </label>
+
+            <textarea rows="4"
+                      class="form-control"
+                      formControlName="endereco">
+            </textarea>
+
+          </div>
+
+        </form>
 
       </div>
 
-      <div class="col-lg-4">
+    </div>
 
-        <div class="summary-card">
+    <!-- RESUMO -->
 
-          <h3>Resumo do pedido</h3>
+    <div class="col-md-5">
 
-          <div class="summary-product">
-            <span>Mandala Aurora</span>
-            <strong>R$ 289,00</strong>
+      <div class="card-mandala p-4">
+
+        <h3 class="mb-4">
+
+          Resumo
+
+        </h3>
+
+        <div *ngFor="let item of cartItems"
+             class="d-flex
+                 justify-content-between
+                 mb-3">
+
+          <div>
+
+            {{ item.nome }}
+
+            x{{ item.quantidade }}
+
           </div>
 
-          <div class="summary-product">
-            <span>Mandala Essence</span>
-            <strong>R$ 349,00</strong>
-          </div>
+          <div>
 
-          <div class="summary-line">
-            <span>Subtotal</span>
-            <span>R$ 638,00</span>
-          </div>
+            {{
+              item.valor *
+              item.quantidade
+              | currency:'R$ '
+            }}
 
-          <div class="summary-line">
-            <span>Frete</span>
-            <span>R$ 29,00</span>
           </div>
-
-          <div class="summary-line total">
-            <span>Total</span>
-            <span>R$ 667,00</span>
-          </div>
-
-          <button class="checkout-btn">
-            Confirmar Pedido
-          </button>
 
         </div>
+
+        <hr>
+
+        <h3>
+
+          Total:
+          {{ total | currency:'BRL' }}
+
+        </h3>
+
+        <button class="btn-mandala
+                 w-100
+                 mt-4"
+                [disabled]="loading"
+                (click)="finalizar()">
+
+          <span *ngIf="!loading">
+
+            Finalizar Pedido
+
+          </span>
+
+          <span *ngIf="loading">
+
+            Processando...
+
+          </span>
+
+        </button>
 
       </div>
 
@@ -137,4 +140,4 @@
 
   </div>
 
-</section>
+</div>

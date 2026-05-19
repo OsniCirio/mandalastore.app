@@ -25,9 +25,7 @@ export class CarrinhoComponent implements OnInit {
   }
   carregar(): void {
 
-    this.items =
-      this.cartService.getItems();
-
+   
     this.total =
       this.cartService.getTotal();
   }

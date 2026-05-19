@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ProdutoDetailComponent } from './pages/product-detail/produto-detail.component'
-import { CartComponent } from './pages/cart/cart.component'; 
+import { CartComponent } from './pages/cart/cart.component';
+import { CartDrawerComponent } from './pages/cart-drawer/cart-drawer.component'; 
 import { HomeComponent } from './pages/home/home.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ProductFormComponent } from './admin/produtos/produto-form/produto-form.component';
@@ -31,6 +32,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/carrinho/carrinho.component')
         .then(m => m.CarrinhoComponent)
+  },
+  {
+    path: 'cartdrawer',
+    loadComponent: () =>
+      import('./pages/cart-drawer/cart-drawer.component')
+        .then(m => m.CartDrawerComponent)
   },
   {
   path: 'admin',

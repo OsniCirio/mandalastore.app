@@ -4,7 +4,11 @@ export interface CartItem {
 
   nome: string;
 
+  categoria: string;
+
   valor: number;
+
+  descricao: string;
 
   imagemUrl: string;
 
