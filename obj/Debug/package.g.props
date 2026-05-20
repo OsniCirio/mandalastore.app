@@ -11,7 +11,7 @@
     <PackageJsonScriptsServeSsrMandalastoreApp Condition="$(PackageJsonScriptsServeSsrMandalastoreApp) == ''">node dist/mandalastore.app/server/server.mjs</PackageJsonScriptsServeSsrMandalastoreApp>
     <PackageJsonPrivate Condition="$(PackageJsonPrivate) == ''">true</PackageJsonPrivate>
     <PackageJsonPackagemanager Condition="$(PackageJsonPackagemanager) == ''">npm@11.11.0</PackageJsonPackagemanager>
-    <PackageJsonDependenciesAngularAnimations Condition="$(PackageJsonDependenciesAngularAnimations) == ''">^21.2.12</PackageJsonDependenciesAngularAnimations>
+    <PackageJsonDependenciesAngularAnimations Condition="$(PackageJsonDependenciesAngularAnimations) == ''">^21.2.13</PackageJsonDependenciesAngularAnimations>
     <PackageJsonDependenciesAngularCommon Condition="$(PackageJsonDependenciesAngularCommon) == ''">^21.2.0</PackageJsonDependenciesAngularCommon>
     <PackageJsonDependenciesAngularCompiler Condition="$(PackageJsonDependenciesAngularCompiler) == ''">^21.2.0</PackageJsonDependenciesAngularCompiler>
     <PackageJsonDependenciesAngularCore Condition="$(PackageJsonDependenciesAngularCore) == ''">^21.2.0</PackageJsonDependenciesAngularCore>

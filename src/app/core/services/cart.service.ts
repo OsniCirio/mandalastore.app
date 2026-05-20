@@ -129,7 +129,11 @@ export class CartService {
 
   clear() {
 
-    localStorage.removeItem(this.storageKey);
+    localStorage.removeItem(
+      this.storageKey
+    );
+
+    this.cartCount.next(0);
   }
 
   getTotal(): number {

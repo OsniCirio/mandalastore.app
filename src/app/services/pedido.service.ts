@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class PedidoService {
 
   api =
-    'https://localhost:5001/api/pedido';
+    'https://localhost:7071/api/pedido';
 
   constructor(
     private http: HttpClient

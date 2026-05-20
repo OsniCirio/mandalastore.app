@@ -17,6 +17,7 @@ import { CartService } from '../../core/services/cart.service';
 
 import { PedidoService } from '../../services/pedido.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
 
@@ -26,6 +27,7 @@ import { ToastrService } from 'ngx-toastr';
 
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule
   ],
 
@@ -48,7 +50,8 @@ export class CheckoutComponent {
     private cartService: CartService,
 
     private pedidoService: PedidoService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
 
   ) { }
 
@@ -91,7 +94,7 @@ export class CheckoutComponent {
 
     if (this.form.invalid)
       return;
-
+    debugger;
     this.loading = true;
 
     const pedido = {
@@ -118,6 +121,8 @@ export class CheckoutComponent {
           this.cartService.clear();
 
           this.toastr.success('Pedido realizado!');
+
+          this.router.navigate(['/pix']);
         },
 
         error: () => {

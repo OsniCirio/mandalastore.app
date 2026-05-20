@@ -86,8 +86,9 @@
 
     </h4>
 
-    <button routerLink="/checkout"
-            class="btn-mandala w-100 mt-3">
+    <button [disabled]="!this.cartItems.length"
+            class="btn-mandala w-100 mt-3"
+            (click)="finaliza()">
 
       Finalizar compra
 

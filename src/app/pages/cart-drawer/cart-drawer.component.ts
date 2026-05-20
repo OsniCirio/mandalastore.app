@@ -4,11 +4,11 @@ import { CartItem } from '../../models/cart-item.model';
 import { environment } from '../../app.config';
 import { CartService } from '../../core/services/cart.service';
 import { DrawerService } from './Services/drawer.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart-drawer',
-  imports: [RouterLink,CommonModule],
+  imports: [CommonModule],
   templateUrl: './cart-drawer.component.html',
   styleUrl: './cart-drawer.component.css',
 })
@@ -22,7 +22,8 @@ export class CartDrawerComponent {
 
   constructor(private cartService: CartService,
     private cd: ChangeDetectorRef,
-    private drawerService: DrawerService) { }
+    private drawerService: DrawerService,
+    private router: Router) { }
 
   ngOnInit(): void {
   
@@ -61,6 +62,11 @@ export class CartDrawerComponent {
     this.carregar();
 
     this.cd.detectChanges();
+  }
+  finaliza() {
+  
+    this.close();
+    this.router.navigate(['/checkout']);
   }
   close() {
     this.drawerService.close();

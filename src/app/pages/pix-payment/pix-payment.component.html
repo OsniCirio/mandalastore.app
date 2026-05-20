@@ -1,0 +1,39 @@
+<div class="container mt-5">
+
+  <div class="card-mandala
+           p-5
+           text-center">
+
+    <h2 class="mb-4">
+
+      Pagamento PIX
+
+    </h2>
+
+    <div *ngIf="loading">
+
+      Gerando QRCode...
+
+    </div>
+
+    <div >
+
+      <img class="pix-qrcode mb-4"
+        
+           [src]="
+          'data:image/png;base64,' +
+          pix.qrCodeBase64
+        ">
+
+      <textarea class="form-control"
+                rows="5">
+
+        {{ pix.qrCode }}
+
+      </textarea>
+
+    </div>
+
+  </div>
+
+</div>

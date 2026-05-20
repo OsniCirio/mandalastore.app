@@ -8,6 +8,9 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\frontend\mandalastore.app\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="src\app\services\payment.service.ts.spec.ts" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="src\assests\images\" />
   </ItemGroup>
 </Project>

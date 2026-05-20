@@ -7,6 +7,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ProductFormComponent } from './admin/produtos/produto-form/produto-form.component';
 import { ProdutosListComponent } from './admin/produtos/produto-list/produto-list.component';
 import { AdminLayoutComponent } from './admin/layout/admin-layout.component';
+import { PixPaymentComponent } from './pages/pix-payment/pix-payment.component';
 
 export const routes: Routes = [
 
@@ -38,6 +39,10 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/cart-drawer/cart-drawer.component')
         .then(m => m.CartDrawerComponent)
+  },
+  {
+    path: 'pix',
+    component: PixPaymentComponent
   },
   {
   path: 'admin',
