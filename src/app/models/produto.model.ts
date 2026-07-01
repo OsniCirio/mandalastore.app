@@ -15,6 +15,12 @@ export interface Produto {
 
   peso: number;
 
+  altura: number;
+
+  largura: number;
+
+  comprimento: number;
+
   ativo: boolean;
 
   imagemUrl?: string;

@@ -9,6 +9,8 @@ import {
 import {
   FormBuilder,
   FormGroup,
+  FormsModule,
+  NgModel,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
@@ -18,6 +20,8 @@ import { CartService } from '../../core/services/cart.service';
 import { PedidoService } from '../../services/pedido.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, RouterModule } from '@angular/router';
+import { FreteResponse } from '../../models/dto/response/frete-response.dto';
+import { FreteService } from '../../services/frete.service';
 
 @Component({
 
@@ -28,7 +32,8 @@ import { Router, RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
 
   templateUrl: './checkout.component.html'
@@ -43,6 +48,15 @@ export class CheckoutComponent {
 
   loading = false;
 
+  cep = '';
+
+  fretes: FreteResponse[] = [];
+
+  freteSelecionado?: FreteResponse;
+
+  subtotal = 0;
+  
+
   constructor(
 
     private fb: FormBuilder,
@@ -51,17 +65,19 @@ export class CheckoutComponent {
 
     private pedidoService: PedidoService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private freteService: FreteService
 
   ) { }
 
   ngOnInit(): void {
 
-    this.cartItems =
-      this.cartService.getCart();
 
-    this.total =
-      this.cartService.getTotal();
+    this.cartItems = this.cartService.getCart();
+
+    this.subtotal = this.cartService.getTotal();
+
+    this.total = this.subtotal;
 
     this.form = this.fb.group({
 
@@ -89,7 +105,29 @@ export class CheckoutComponent {
       ]
     });
   }
+  calcularFrete() {
+    debugger;
+    if (!this.cep)
+      return;
+      
+    this.freteService
+      .calcular(this.cep)
 
+      .subscribe({
+
+        next: (response) => {
+
+          this.fretes = response;
+        }
+      });
+  }
+  
+  selecionarFrete(frete: any) {
+    this.freteSelecionado = frete;
+
+    this.total =
+      this.subtotal + frete.valor;
+  }
   finalizar() {
 
     if (this.form.invalid)

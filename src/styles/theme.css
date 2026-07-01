@@ -195,3 +195,24 @@ button:disabled {
     transform: translateY(0);
   }
 }
+.frete-option {
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: .2s;
+}
+
+  .frete-option:hover {
+    border-color: #7b9258;
+    background: #f7faf4;
+  }
+
+  .frete-option.selected {
+    border: 2px solid #7b9258;
+    background: #f1f7ec;
+  }
