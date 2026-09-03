@@ -1,15 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProdutoService } from '../../../services/produto.service';
 import { environment } from '../../../app.config';
 import { ToastrService }  from 'ngx-toastr';
+import { MaskDirective } from '../../../shared/directives/mask';
+import { DecimalMaskDirective } from '../../../shared/directives/app-decimal-mask';
+import {
+  NgxMaskDirective,
+  NgxMaskPipe,
+  provideEnvironmentNgxMask,
+  provideNgxMask
+} from 'ngx-mask';
+import { CategoriaService } from '../../../services/categoria.service';
+import { CategoriaModel } from '../../../models/categoria.model';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, NgxMaskDirective],
+  providers: [provideNgxMask()],
   templateUrl: './produto-form.component.html',
   styleUrl: './produto-form.component.css'
 })
@@ -22,9 +33,13 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   productId: string | null = null;
   editMode = false;
   loading = false;
+  
 
   selectedFile: File | null = null;
   previewImage: string | null = null;
+
+  categorias = signal<CategoriaModel[]>([]);
+  carregandoCategorias = signal<boolean>(false);
 
   cameraActive = false;
   private stream: MediaStream | null = null;
@@ -34,11 +49,14 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     private productService: ProdutoService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private categoriaService: CategoriaService
   ) { }
 
   ngOnInit(): void {
     this.createForm();
+
+    this.carregarCategorias();
 
     this.productId = this.route.snapshot.paramMap.get('id');
     this.editMode = !!this.productId;
@@ -47,7 +65,23 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       this.loadProduct(this.productId);
     }
   }
+  carregarCategorias(): void {
 
+    this.carregandoCategorias.set(true);
+
+    this.categoriaService.listar()
+      .subscribe({
+        next: categorias => {
+          this.categorias.set(categorias);
+          this.carregandoCategorias.set(false);
+        },
+
+        error: erro => {
+          console.error(erro);
+          this.carregandoCategorias.set(false);
+        }
+      });
+  }
   ngOnDestroy(): void {
     this.stopCamera();
   }
@@ -59,9 +93,13 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
       descricao: ['', Validators.required],
 
-      categoria: ['', Validators.required],
+      categoriaId: ['', Validators.required],
 
       preco: [0, Validators.required],
+
+      altura: [0, Validators.required],
+
+      largura: [0, Validators.required],
 
       estoque: [0, Validators.required],
 
@@ -251,25 +289,41 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       'categoria',
       this.form.value.categoria
     );
+    formData.append(
+      'categoriaId',
+      this.form.value.categoriaId
+    );
 
     formData.append(
       'preco',
-      String(this.form.value.preco)
+      this.form.value.preco
     );
 
     formData.append(
       'estoque',
-      String(this.form.value.estoque)
+      this.form.value.estoque
     );
 
     formData.append(
       'peso',
-      String(this.form.value.peso)
+      this.form.value.peso
     );
 
     formData.append(
+      'largura',
+      this.form.value.largura
+    );
+
+    formData.append(
+      'altura',
+      this.form.value.altura
+    );
+
+
+ 
+    formData.append(
       'ativo',
-      String(this.form.value.ativo)
+      this.form.value.ativo
     );
 
     if (this.selectedFile) {
@@ -287,6 +341,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     if (this.editMode && this.productId) {
+
       this.productService.update(this.productId, formData).subscribe({
         next: () => {
 
@@ -321,3 +376,5 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     });
   }
 }
+
+

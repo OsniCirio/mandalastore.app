@@ -85,81 +85,72 @@
 
             <!-- CARD -->
             <!--<div class="mandala-card">-->
+            <!-- IMAGEM -->
+            <!--<div class="image-wrapper">
 
-              <!-- IMAGEM -->
-              <!--<div class="image-wrapper">
+    <img [src]="uploadsUrl + item.imagemUrl"
+         [alt]="item.nome"
+         class="mandala-img">-->
+            <!-- FAVORITO -->
+            <!--<button class="favorite-btn">
 
+      <i class="bi bi-heart"></i>
+
+    </button>
+
+  </div>-->
+            <!-- CONTEÚDO -->
+            <!--<div class="card-content">-->
+            <!-- CATEGORIA -->
+            <!--<div class="mandala-category">
+
+    {{ item.categoria }}
+
+  </div>-->
+            <!-- TÍTULO -->
+            <!--<h2 class="mandala-title">
+
+    {{ item.nome }}
+
+  </h2>-->
+            <!-- PREÇO -->
+            <!--<div class="mandala-price">
+
+    {{ item.preco | currency:'R$ ' }}
+
+  </div>-->
+            <!-- LINHA -->
+            <!--<div class="card-divider"></div>-->
+            <!-- AÇÕES -->
+            <!--<div class="card-actions">-->
+            <!-- DETALHES -->
+            <!--<button class="btn-details" (click)="abrirproduto(item)">
+
+    <i class="bi bi-eye"></i>
+
+    Ver detalhes
+
+  </button>-->
+            <!-- CARRINHO -->
+            <!--<button class="btn-cart"
+                (click)="adicionarCarrinho(item)">
+
+          <i class="bi bi-cart"></i>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>-->
+
+            <!--<div class="card-mandala">
+              <div class="produto-img-container">
                 <img [src]="uploadsUrl + item.imagemUrl"
                      [alt]="item.nome"
-                     class="mandala-img">-->
-
-                <!-- FAVORITO -->
-                <!--<button class="favorite-btn">
-
-                  <i class="bi bi-heart"></i>
-
-                </button>
-
-              </div>-->
-
-              <!-- CONTEÚDO -->
-              <!--<div class="card-content">-->
-
-                <!-- CATEGORIA -->
-                <!--<div class="mandala-category">
-
-                  {{ item.categoria }}
-
-                </div>-->
-
-                <!-- TÍTULO -->
-                <!--<h2 class="mandala-title">
-
-                  {{ item.nome }}
-
-                </h2>-->
-
-                <!-- PREÇO -->
-                <!--<div class="mandala-price">
-
-                  {{ item.preco | currency:'R$ ' }}
-
-                </div>-->
-
-                <!-- LINHA -->
-                <!--<div class="card-divider"></div>-->
-
-                <!-- AÇÕES -->
-                <!--<div class="card-actions">-->
-
-                  <!-- DETALHES -->
-                  <!--<button class="btn-details" (click)="abrirproduto(item)">
-
-                    <i class="bi bi-eye"></i>
-
-                    Ver detalhes
-
-                  </button>-->
-
-                  <!-- CARRINHO -->
-                  <!--<button class="btn-cart"
-                          (click)="adicionarCarrinho(item)">
-
-                    <i class="bi bi-cart"></i>
-
-                  </button>
-
-                </div>
-
+                     class="produto-img">
               </div>
-
-            </div>-->
-
-            <div class="card-mandala">
-
-              <img [src]="uploadsUrl + item.imagemUrl"
-                   [alt]="item.nome"
-                    class="img-mandala">
 
               <div class="p-3">
 
@@ -209,8 +200,62 @@
 
               </div>
 
-            </div>
+            </div>-->
 
+            <div class="produto-card">
+
+              <!-- IMAGEM -->
+              <div class="produto-imagem">
+                <img [src]="uploadsUrl + item.imagemUrl"
+                     [alt]="item.nome"
+                     loading="lazy">
+              </div>
+
+              <!-- CONTEÚDO -->
+              <div class="produto-conteudo">
+
+                <div class="produto-info">
+
+                  <span class="produto-categoria">
+                    {{ item.categoria }}
+                  </span>
+
+                  <h3 class="produto-nome">
+                    {{ item.nome }}
+                  </h3>
+
+                  <div class="produto-preco">
+                    {{ item.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+                  </div>
+
+                </div>
+
+                <!-- BOTÕES -->
+                <div class="produto-acoes">
+
+                  <button type="button"
+                          class="btn-detalhes"
+                          (click)="abrirproduto(item)">
+
+                    <i class="bi bi-eye"></i>
+                    <span>Ver detalhes</span>
+
+                  </button>
+
+                  <button type="button"
+                          class="btn-carrinho"
+                          (click)="adicionarCarrinho(item)"
+                          aria-label="Adicionar ao carrinho">
+
+                    <i class="bi bi-cart"></i>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
           </div>
 
         </div>

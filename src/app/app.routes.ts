@@ -8,6 +8,9 @@ import { ProductFormComponent } from './admin/produtos/produto-form/produto-form
 import { ProdutosListComponent } from './admin/produtos/produto-list/produto-list.component';
 import { AdminLayoutComponent } from './admin/layout/admin-layout.component';
 import { PixPaymentComponent } from './pages/pix-payment/pix-payment.component';
+import { CategoriaComponent } from './admin/categoria/categoria.component';
+import { CategoriaListComponent } from './admin/categoria/categoria-list.component/categoria-list.component';
+import { TemasListComponent } from './admin/temas/temas-list.component';
 
 export const routes: Routes = [
 
@@ -20,6 +23,7 @@ export const routes: Routes = [
     path: 'cart',
     component: CartComponent
   },
+ 
   {
     path: '',
     component: HomeComponent
@@ -57,6 +61,23 @@ export const routes: Routes = [
     {
       path: 'produtos/novo',
       component: ProductFormComponent
+    },
+    {
+      path: 'categoria/novo',
+      component: CategoriaComponent
+    },
+    {
+      path: 'categoria/editar/:id',
+      component: CategoriaComponent
+    },
+
+    {
+      path: 'listacategoria',
+      component: CategoriaListComponent
+    },
+    {
+      path: 'listatema',
+      component: TemasListComponent
     },
 
     {

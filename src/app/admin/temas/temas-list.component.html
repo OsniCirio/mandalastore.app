@@ -1,0 +1,128 @@
+<div class="form-page">
+
+  <div class="form-header">
+    <div>
+      <p class="section-small">Administração</p>
+
+      <h1 class="section-title">
+        Lista de tema Mandalas
+      </h1>
+    </div>
+
+    <a routerLink="/admin/temas" class="btn-outline-soft">
+      Voltar
+    </a>
+  </div>
+
+  <div class="row g-4">
+
+    <div class="col-lg-8">
+
+      <div class="form-card">
+
+        <div class="mb-3">
+          <label>Pesquisar </label>
+          <input type="text"
+                 class="form-control"
+                 [formControl]="pesquisa"
+                 placeholder="Pesquisar Tema...">
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-save" (click)="novo()">
+            <i class="bi bi-plus-lg"></i>
+            Novo
+          </button>
+        </div>
+
+      </div>
+      <div class="tema-grid-card">
+
+        @if (temasFiltradas.length > 0) {
+
+        <div class="table-responsive">
+
+          <table class="tema-table">
+
+            <thead>
+              <tr>
+                <th>tema</th>
+                <th class="text-center">Produtos</th>
+                <th class="text-end">Ações</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              @for (tema of temasFiltradas; track tema.id) {
+
+              <tr>
+
+                <td>
+                  <div class="tema-nome">
+                    {{ tema.tema_Nome }}
+                  </div>
+                </td>
+
+                <td class="text-center">
+                  <span class="produto-count">
+                    {{ tema.quantidadeProdutos }}
+                  </span>
+                </td>
+                <td>
+
+                  <div class="acoes">
+
+                    <button type="button"
+                            class="btn-acao"
+                            title="Editar"
+                            (click)="editar(tema.id)">
+
+                      <i class="bi bi-pencil"></i>
+
+                    </button>
+
+                    <button type="button"
+                            class="btn-acao excluir"
+                            title="Excluir"
+                            (click)="excluir(tema)">
+
+                      <i class="bi bi-trash"></i>
+
+                    </button>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+        } @else {
+
+        <div class="sem-registros">
+
+          <i class="bi bi-bluesky"></i>
+
+          <strong>Nenhuma tema encontrado</strong>
+
+          <span>
+            Tente alterar sua pesquisa ou cadastre uma nova tema.
+          </span>
+
+        </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

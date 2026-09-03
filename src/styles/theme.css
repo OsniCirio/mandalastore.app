@@ -132,7 +132,7 @@ button:disabled {
   color: #7b9258;
   border-radius: 18px;
   padding: 14px;
-  font-weight: 600;
+  font-weight: 300;
   transition: .3s;
 }
 
@@ -216,3 +216,226 @@ button:disabled {
     border: 2px solid #7b9258;
     background: #f1f7ec;
   }
+.produto-img-container {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.produto-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.produto-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+
+/* ============================= */
+/* IMAGEM                        */
+/* ============================= */
+
+.produto-imagem {
+  position: relative;
+  width: 100%;
+  /*
+     ESSA É A PARTE PRINCIPAL.
+
+     A altura será calculada
+     automaticamente pela largura.
+  */
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f5f3ef;
+}
+
+
+  .produto-imagem img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+
+/* ============================= */
+/* CONTEÚDO                      */
+/* ============================= */
+
+.produto-conteudo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px 16px;
+}
+
+
+.produto-info {
+  flex: 1;
+}
+
+
+/* CATEGORIA */
+
+.produto-categoria {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #71994a;
+  text-transform: uppercase;
+}
+
+
+/* NOME */
+
+.produto-nome {
+  margin: 0 0 16px;
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #333;
+}
+
+
+/* PREÇO */
+
+.produto-preco {
+  margin-bottom: 18px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #71994a;
+}
+
+
+/* ============================= */
+/* BOTÕES                        */
+/* ============================= */
+
+.produto-acoes {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+
+.btn-detalhes,
+.btn-carrinho {
+  min-height: 58px;
+  border-radius: 18px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+
+/* DETALHES */
+
+.btn-detalhes {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: transparent;
+  color: #71994a;
+  border: 2px solid #71994a;
+  cursor: pointer;
+}
+
+
+/* CARRINHO */
+
+.btn-carrinho {
+  flex: 0 0 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: #71994a;
+  color: white;
+  cursor: pointer;
+}
+
+
+  .btn-carrinho i {
+    font-size: 1.7rem;
+  }
+
+
+/* ============================= */
+/* DESKTOP                       */
+/* ============================= */
+
+@media (hover: hover) {
+
+  .produto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+  }
+
+
+  .btn-detalhes:hover {
+    background: #71994a;
+    color: white;
+  }
+
+
+  .btn-carrinho:hover {
+    transform: scale(1.04);
+  }
+}
+
+
+/* ============================= */
+/* CELULAR PEQUENO               */
+/* ============================= */
+
+@media (max-width: 380px) {
+
+  .produto-conteudo {
+    padding: 14px;
+  }
+
+
+  .produto-nome {
+    font-size: 1.25rem;
+  }
+
+
+  .produto-preco {
+    font-size: 1.05rem;
+  }
+
+
+  .btn-detalhes,
+  .btn-carrinho {
+    min-height: 52px;
+  }
+
+
+  .btn-carrinho {
+    flex-basis: 58px;
+  }
+
+
+  .btn-detalhes span {
+    font-size: 0.9rem;
+  }
+}

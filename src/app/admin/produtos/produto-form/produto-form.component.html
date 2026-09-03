@@ -36,12 +36,33 @@
 
             <div class="col-md-6 mb-3">
               <label>Categoria</label>
-              <input class="form-control input-soft" formControlName="categoria">
+              <select id="categoriaId"
+                      class="form-select"
+                      formControlName="categoriaId">
+
+                <option value="">
+                  Selecione uma categoria
+                </option>
+
+                @for (categoria of categorias(); track categoria.id) {
+
+                <option [value]="categoria.id">
+                  {{ categoria.categoria_Nome }}
+                </option>
+
+                }
+
+              </select>
             </div>
 
             <div class="col-md-3 mb-3">
               <label>Preço</label>
-              <input type="number" class="form-control input-soft" formControlName="preco">
+              <input type="text"
+                     formControlName="preco"
+                     mask="separator.2"
+                     thousandSeparator="."
+                     decimalMarker=","
+                     class="form-control input-soft">
             </div>
 
             <div class="col-md-3 mb-3">
@@ -50,6 +71,42 @@
             </div>
 
           </div>
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+              <label>Altura</label>
+              <input type="text"
+                     formControlName="altura"
+                     mask="separator.0"
+                     thousandSeparator="."
+                     decimalMarker=","
+                     class="form-control input-soft">
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label>largura</label>
+              <input type="text"
+                     formControlName="largura"
+                     mask="separator.0"
+                     thousandSeparator="."
+                     decimalMarker=","
+                     class="form-control input-soft">
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label>Peso</label>
+              <input  type="text"
+                    formControlName="peso"
+                    mask="separator.3"
+                    thousandSeparator="."
+                    decimalMarker=","
+                    class="form-control input-soft">
+            </div>
+
+          </div>
+
 
           <div class="form-check mt-3">
             <input type="checkbox" class="form-check-input" formControlName="ativo">
