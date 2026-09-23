@@ -1,6 +1,6 @@
 .hero {
-  min-height: 92vh;
-  background: linear-gradient( rgba(246,242,237,0.72), rgba(246,242,237,0.72) ), url('/assets/images/bg-mandala.jpg');
+  min-height: 42vh;
+  background: linear-gradient( rgba(246,242,237,0.72), rgba(246,242,237,0.72) ), url('/src/assets/images/bg-mandala.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -15,7 +15,7 @@
   letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   font-size: 0.8rem;
 }
 
@@ -154,7 +154,136 @@
     height: 420px;
     object-fit: cover;
   }
+.faixa-mensagens {
+  --cor-destaque: #cab495;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 4rem 1.5rem 3.5rem;
+  overflow: hidden;
+  transition: background-color 900ms ease;
+}
 
+.conteudo-mensagem {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 950px;
+  min-height: 180px;
+  text-align: center;
+}
+
+.frase {
+  grid-area: 1 / 1;
+  margin: 0;
+  font-size: clamp( 1.65rem, 3vw, 2.45rem );
+  font-weight: 300;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+
+.aspas {
+  color: var(--cor-destaque);
+  font-family: Georgia, serif;
+  font-size: 1.1em;
+}
+
+.mensagem-entrando {
+  animation: aparecerMensagem 800ms 180ms ease-out both;
+}
+
+.mensagem-saindo {
+  animation: desaparecerMensagem 400ms ease-in both;
+}
+
+@keyframes aparecerMensagem {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes desaparecerMensagem {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.controles {
+  position: absolute;
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.indicador {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba( 90, 90, 90, 0.25 );
+  cursor: pointer;
+  transition: background-color 300ms ease, transform 300ms ease;
+}
+
+  .indicador.ativo {
+    background-color: var(--cor-destaque);
+    transform: scale(1.4);
+  }
+
+.botao-pausa {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 0.4rem;
+  padding: 0;
+  color: #626762;
+  background-color: transparent;
+  border: 1px solid rgba(98, 103, 98, 0.35);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+
+  .faixa-mensagens {
+    min-height: 330px;
+    padding-inline: 1.25rem;
+  }
+
+  .conteudo-mensagem {
+    min-height: 200px;
+  }
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+
+  .faixa-mensagens {
+    transition: none;
+  }
+
+  .mensagem-entrando,
+  .mensagem-saindo {
+    animation: none;
+  }
+}
 
 /* RESPONSIVO */
 

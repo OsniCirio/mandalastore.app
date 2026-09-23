@@ -20,7 +20,7 @@ export class CarrinhoComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-    debugger;
+
     this.carregar();
   }
   carregar(): void {

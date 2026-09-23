@@ -50,7 +50,6 @@ export class CartDrawerComponent {
 
   Qtde(id: string, qtde: number): void {
 
-    debugger;
     if (qtde === 1)
       this.cartService.increase(id);
     else

@@ -1,0 +1,100 @@
+<div class="container mt-4">
+
+  <h3>Geração de Etiqueta</h3>
+
+  <div class="row mt-4">
+
+    <div class="col-md-8">
+
+      <label class="form-label">
+        Código do pedido
+      </label>
+
+      <div class="input-group">
+
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="pedidoId"
+               placeholder="Informe o ID do pedido">
+
+        <button class="btn btn-primary"
+                type="button"
+                [disabled]="carregando"
+                (click)="buscarPedido()">
+
+          {{ carregando ? 'Buscando...' : 'Buscar' }}
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div *ngIf="pedido"
+       class="card mt-4">
+
+    <div class="card-body">
+
+      <h5 class="card-title">
+        Pedido {{ pedido.id }}
+      </h5>
+
+      <hr>
+
+      <p>
+        <strong>Cliente:</strong>
+        {{ pedido.nomeCliente }}
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        {{ pedido.status }}
+      </p>
+
+      <p>
+        <strong>Total:</strong>
+        {{ pedido.total | currency:'BRL' }}
+      </p>
+
+      <p>
+        <strong>Frete:</strong>
+        {{ pedido.freteTransportadora }}
+        -
+        {{ pedido.freteServico }}
+      </p>
+
+      <p>
+        <strong>Prazo:</strong>
+        {{ pedido.fretePrazo }} dias
+      </p>
+
+      <hr>
+
+      <h6>Entrega</h6>
+
+      <p>
+        {{ pedido.endereco }},
+        {{ pedido.numero }}
+
+        <span *ngIf="pedido.complemento">
+          - {{ pedido.complemento }}
+        </span>
+
+        <br>
+
+        {{ pedido.bairro }}<br>
+
+        {{ pedido.cidade }} -
+        {{ pedido.uf }}<br>
+
+        CEP {{ pedido.cep }}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

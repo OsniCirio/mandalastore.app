@@ -56,7 +56,7 @@ export class CartService {
       item.quantidade++;
 
     } else {
-
+      debugger;
       cart.push({
 
         id: produto.id,
@@ -70,6 +70,12 @@ export class CartService {
         categoria: produto.categoria,
 
         descricao: produto.descricao,
+
+        largura: produto.largura,
+
+        altura: produto.altura,
+
+        peso: produto.peso,
 
         quantidade: 1
       });

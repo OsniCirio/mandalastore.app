@@ -7,7 +7,7 @@ import { Injectable }
 import { Observable }
   from 'rxjs';
 
-import { Produto } from '../models/produto.model';
+import { Produto, ProdutoDetalheDto } from '../models/produto.model';
 import { environment } from '../app.config';
 
 
@@ -29,12 +29,25 @@ export class ProdutoService {
     return this.http.get<any>(
      `${this.api}/getall`);
   }
+  listdetalhe(id: string): Observable<any> {
+    return this.http.get<any>(
+      `${this.api}/detalhe/${id}`);
+  }
+
   getById(
     id: string
   ): Observable<Produto> {
 
     return this.http.get<Produto>(
       `${this.api}/${id}`
+    );
+  }
+  getProdutoById(
+    id: string
+  ): Observable<ProdutoDetalheDto> {
+
+    return this.http.get<ProdutoDetalheDto>(
+      `${this.api}/detalhe/${id}`
     );
   }
   create(

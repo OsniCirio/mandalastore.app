@@ -3,6 +3,7 @@
   <div class="container">
 
     <!-- Logo -->
+    
     <a class="navbar-brand brand-title">
 
       <span class="brand-main">
@@ -32,7 +33,7 @@
       <ul class="navbar-nav ms-auto align-items-center gap-3">
 
         <li class="nav-item">
-          <a class="nav-link"  routerLink="/">
+          <a class="nav-link" routerLink="/">
             Início
           </a>
         </li>
@@ -62,10 +63,20 @@
           </button>
 
         </li>
+        <li class="nav-item">
+          <a routerLink="/favoritos">
+            <i class="bi bi-heart-fill favorito-ativo"></i>
 
+            @if (favoritoService.favoritos().length > 0) {
+            <span>
+              {{ favoritoService.favoritos().length }}
+            </span>
+            }
+          </a>
+         </li>
         <li class="nav-item">
 
-          <button class="btn-cart-navbar"
+          <button class="btn-cart-navbar favorito-ativo"
                   (click)="openCart()">
 
             <i class="bi bi-cart3"></i>

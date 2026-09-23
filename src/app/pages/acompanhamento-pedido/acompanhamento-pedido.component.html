@@ -1,0 +1,179 @@
+<div class="container acompanhamento-container"
+     *ngIf="!carregando && pedido">
+
+  <!-- Cabeçalho -->
+  <div class="text-center mb-5">
+
+    <i class="bi bi-bag-check fs-1"></i>
+
+    <h2 class="mt-3">
+      Obrigado pela sua compra, {{ pedido.nomeCliente }}!
+    </h2>
+
+    <p class="text-muted">
+      Acompanhe aqui o andamento do seu pedido.
+    </p>
+
+  </div>
+
+
+  <!-- Pedido -->
+  <div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <small class="text-muted">Pedido</small>
+          <div>
+            <strong>#{{ pedido.id }}</strong>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <small class="text-muted">Data</small>
+          <div>
+            {{ pedido.dataPedido | date:'dd/MM/yyyy' }}
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <small class="text-muted">Total</small>
+          <div>
+            <strong>
+              {{ pedido.total | currency:'BRL' }}
+            </strong>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Timeline -->
+
+  <div class="timeline">
+
+    <!-- Pedido realizado -->
+
+    <div class="timeline-item concluido">
+
+      <div class="timeline-icon">
+        <i class="bi bi-check-lg"></i>
+      </div>
+
+      <div>
+        <strong>Pedido realizado</strong>
+
+        <p>
+          Recebemos seu pedido.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- Pagamento -->
+
+    <div class="timeline-item"
+         [class.concluido]="etapaConcluida(2)"
+         [class.ativo]="etapaAtiva(2)">
+
+      <div class="timeline-icon">
+        <i class="bi bi-credit-card"></i>
+      </div>
+
+      <div>
+        <strong>Pagamento aprovado</strong>
+
+        <p>
+          Seu pagamento foi confirmado.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- Preparando -->
+
+    <div class="timeline-item"
+         [class.concluido]="etapaConcluida(3)"
+         [class.ativo]="etapaAtiva(3)">
+
+      <div class="timeline-icon">
+        <i class="bi bi-box-seam"></i>
+      </div>
+
+      <div>
+        <strong>Preparando para envio</strong>
+
+        <p>
+          Sua mandala está sendo preparada com cuidado.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- Enviado -->
+
+    <div class="timeline-item"
+         [class.concluido]="etapaConcluida(4)"
+         [class.ativo]="etapaAtiva(4)">
+
+      <div class="timeline-icon">
+        <i class="bi bi-truck"></i>
+      </div>
+
+      <div>
+        <strong>Pedido enviado</strong>
+
+        <p>
+          Sua mandala está a caminho.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- Entregue -->
+
+    <div class="timeline-item"
+         [class.concluido]="etapaConcluida(5)"
+         [class.ativo]="etapaAtiva(5)">
+
+      <div class="timeline-icon">
+        <i class="bi bi-house-check"></i>
+      </div>
+
+      <div>
+        <strong>Entregue</strong>
+
+        <p>
+          Pedido entregue.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- Loading -->
+
+<div *ngIf="carregando"
+     class="text-center py-5">
+
+  <div class="spinner-border"></div>
+
+  <p class="mt-3">
+    Carregando seu pedido...
+  </p>
+
+</div>

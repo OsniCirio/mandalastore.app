@@ -24,8 +24,8 @@ export class TemasListComponent implements OnInit {
   }
 
   async load() {
-    this.temaService.listaCategoriaProduto().subscribe((temas: TemaPesquisaModel[]) => {
-      this.categorias = temas;
+    this.temaService.listaTemaProduto().subscribe((tema: TemaPesquisaModel[]) => {
+      this.temas = tema;
     });
   }
   novo() {
@@ -33,12 +33,12 @@ export class TemasListComponent implements OnInit {
   }
   pesquisa = new FormControl('');
 
-  categorias: TemaPesquisaModel[] = [];
+  temas: TemaPesquisaModel[] = [];
 
   editar(id: string) {
-    this.router.navigate(['/admin/categoria/editar', id]);
+    this.router.navigate(['/admin/tema/editar', id]);
   }
-  excluir(categoria: TemaPesquisaModel) {
+  excluir(tema: TemaPesquisaModel) {
 
     Swal.fire({
       title: 'Excluir mandala?',
@@ -53,7 +53,7 @@ export class TemasListComponent implements OnInit {
         if (result.isConfirmed) {
 
 
-          this.temaService.delete(categoria.id).subscribe({
+          this.temaService.delete(tema.id).subscribe({
             next: () => {
 
               this.load();
@@ -86,9 +86,9 @@ export class TemasListComponent implements OnInit {
       this.pesquisa.value?.toLowerCase().trim() ?? '';
 
     if (!texto)
-      return this.categorias;
+      return this.temas;
 
-    return this.categorias.filter(x =>
+    return this.temas.filter(x =>
       x.tema_Nome.toLowerCase().includes(texto)
     );
   }

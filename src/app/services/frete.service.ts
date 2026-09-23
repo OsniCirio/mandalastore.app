@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { calcularFreteDto } from '../models/pedido.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,22 +14,11 @@ export class FreteService {
     private http: HttpClient
   ) { }
 
-  calcular(cep: string) {
-
+  calcular(cep: calcularFreteDto) {
     return this.http.post<any[]>(
 
       `${this.api}/calcular`,
-
-      {
-        cepDestino: cep,
-
-        peso: 0.5,
-
-        altura: 40,
-
-        largura: 40,
-
-        comprimento: 5
-      });
+       cep
+      );
   }
 }

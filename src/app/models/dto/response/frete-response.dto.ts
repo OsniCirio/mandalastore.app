@@ -1,8 +1,12 @@
 export interface FreteResponse {
 
-  servico: string;
+  id: string;
+
+  servico?: string;
 
   valor: number;
 
-  prazo: number;
+  prazoDias: number;
+
+  transportadora?:string
 }

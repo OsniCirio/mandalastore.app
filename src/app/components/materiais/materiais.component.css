@@ -1,0 +1,297 @@
+.materiais-section {
+  padding: 80px 0;
+  background: #f8f4ee;
+}
+
+
+/* Cabeçalho */
+
+.materiais-header {
+  max-width: 680px;
+  margin: 0 auto 50px;
+}
+
+.materiais-subtitulo {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #81947d;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.materiais-header h2 {
+  margin-bottom: 15px;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #292929;
+}
+
+.materiais-header p {
+  margin: 0;
+  color: #6c6c6c;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+
+/* Card */
+
+.material-card {
+  height: 100%;
+  padding: 30px 24px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 22px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+  .material-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.09);
+  }
+
+
+/* Imagem circular */
+
+.material-image {
+  width: 155px;
+  height: 155px;
+  margin: 0 auto 25px;
+  padding: 5px;
+  border: 1px solid #a7b8a2;
+  border-radius: 50%;
+}
+
+  .material-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+
+/* Conteúdo */
+
+.material-body {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 180px);
+}
+
+.material-tag {
+  display: inline-block;
+  align-self: center;
+  margin-bottom: 12px;
+  padding: 5px 15px;
+  background: #dfe8dc;
+  color: #536650;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.material-body h3 {
+  margin-bottom: 14px;
+  color: #292929;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.material-body p {
+  flex-grow: 1;
+  margin-bottom: 22px;
+  color: #6d6d6d;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+
+/* Botão */
+
+.material-link {
+  align-self: center;
+  padding: 6px 0;
+  background: transparent;
+  border: 0;
+  color: #61755e;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+  .material-link i {
+    margin-left: 6px;
+    transition: transform 0.2s ease;
+  }
+
+  .material-link:hover i {
+    transform: translateX(4px);
+  }
+
+
+/* Responsivo */
+
+@media (max-width: 767px) {
+
+  .materiais-section {
+    padding: 55px 0;
+  }
+
+  .materiais-header {
+    margin-bottom: 35px;
+  }
+
+    .materiais-header h2 {
+      font-size: 1.8rem;
+    }
+
+  .material-card {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+/* =========================
+   Modal dos materiais
+   ========================= */
+
+.material-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1055;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.55);
+  animation: modalFade 0.2s ease;
+}
+
+.material-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  padding: 42px;
+  background: #f8f4ee;
+  border-radius: 26px;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
+  animation: modalEntrada 0.25s ease;
+}
+
+
+/* Imagem */
+
+.material-modal-image {
+  width: 190px;
+  height: 190px;
+  margin: 0 auto 25px;
+  padding: 5px;
+  background: white;
+  border: 1px solid #a7b8a2;
+  border-radius: 50%;
+}
+
+  .material-modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+
+/* Título */
+
+.material-modal-content h2 {
+  margin: 15px 0;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #292929;
+}
+
+
+/* Texto */
+
+.material-modal-content p {
+  margin: 0;
+  color: #606060;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+
+/* Fechar */
+
+.material-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  color: #555;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+  .material-modal-close:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+
+/* Animações */
+
+@keyframes modalFade {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalEntrada {
+
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* Mobile */
+
+@media (max-width: 576px) {
+
+  .material-modal-content {
+    padding: 35px 24px;
+  }
+
+  .material-modal-image {
+    width: 145px;
+    height: 145px;
+  }
+
+  .material-modal-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .material-modal-content p {
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,82 @@
+.acompanhamento-container {
+  max-width: 850px;
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.timeline {
+  position: relative;
+  margin-top: 40px;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  min-height: 105px;
+  opacity: 0.45;
+}
+
+  /* Linha vertical */
+
+  .timeline-item:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 45px;
+    width: 2px;
+    height: 60px;
+    background: #dee2e6;
+  }
+
+
+/* Ícone */
+
+.timeline-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #adb5bd;
+  background: white;
+  font-size: 20px;
+  z-index: 1;
+}
+
+
+/* Concluído */
+
+.timeline-item.concluido {
+  opacity: 1;
+}
+
+  .timeline-item.concluido .timeline-icon {
+    border-color: #198754;
+    color: #198754;
+  }
+
+
+/* Etapa atual */
+
+.timeline-item.ativo {
+  opacity: 1;
+}
+
+  .timeline-item.ativo .timeline-icon {
+    transform: scale(1.1);
+  }
+
+
+/* Textos */
+
+.timeline-item strong {
+  font-size: 17px;
+}
+
+.timeline-item p {
+  margin-top: 4px;
+  color: #6c757d;
+}

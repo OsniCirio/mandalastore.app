@@ -1,0 +1,68 @@
+<table class="table table-hover mt-4">
+
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Cliente</th>
+      <th>Status</th>
+      <th>Frete</th>
+      <th>Total</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let pedido of pedidos">
+
+      <td>
+        {{ pedido.dataPedido | date:'dd/MM/yyyy HH:mm' }}
+      </td>
+
+      <td>
+        {{ pedido.nomeCliente }}
+      </td>
+
+      <td>
+        {{ pedido.status }}
+      </td>
+
+      <td>
+        {{ pedido.freteServico }}
+      </td>
+
+      <td>
+        {{ pedido.total | currency:'BRL' }}
+      </td>
+
+      <td>
+        <!-- GERAR ETIQUETA -->
+        <button type="button"
+                class="btn btn-sm btn-outline-primary me-2"
+                [disabled]="pedido.status === 'EtiquetaGerada'"
+                (click)="gerarEtiqueta(pedido)"
+                title="Gerar etiqueta">
+
+          <i class="bi bi-tag"></i>
+          Gerar etiqueta
+
+        </button>
+      </td>
+      <td>
+        <!-- IMPRIMIR ETIQUETA -->
+        <button type="button"
+                class="btn btn-sm btn-outline-success"
+                [disabled]="pedido.status !== 'EtiquetaGerada'"
+                (click)="imprimirEtiqueta(pedido)"
+                title="Imprimir etiqueta">
+
+          <i class="bi bi-printer"></i>
+          Imprimir
+        </button>
+      </td>
+    </tr>
+
+  </tbody>
+
+</table>

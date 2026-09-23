@@ -12,27 +12,27 @@
         <h1 class="hero-title">
           Mandalas Artesanais
         </h1>
+        <app-materiais></app-materiais>
+        <!--<p class="hero-description">
 
-        <p class="hero-description">
+    Peças únicas criadas para
+    transformar ambientes,
+    elevar energias e inspirar
+    equilíbrio.
 
-          Peças únicas criadas para
-          transformar ambientes,
-          elevar energias e inspirar
-          equilíbrio.
+  </p>
 
-        </p>
+  <div class="hero-buttons">
 
-        <div class="hero-buttons">
+    <button class="btn-mandala">
+      Explorar Coleção
+    </button>
 
-          <button class="btn-mandala">
-            Explorar Coleção
-          </button>
+    <button class="btn-outline-soft">
+      Sobre Nós
+    </button>
 
-          <button class="btn-outline-soft">
-            Sobre Nós
-          </button>
-
-        </div>
+  </div>-->
 
       </div>
 
@@ -42,16 +42,74 @@
 
 
   <!-- FRASE -->
-  <section class="quote-section">
+  <section class="faixa-mensagens"
+           [style.background-color]="mensagemAtual().fundo"
+           [style.--cor-destaque]="mensagemAtual().destaque">
 
-    <div class="container">
+    <div class="conteudo-mensagem">
 
-      <p class="quote-text">
+      @for (
+      mensagem of mensagens;
+      track mensagem.id;
+      let indice = $index
+      ) {
 
-        “Cada mandala carrega intenção,
-        equilíbrio e conexão.”
+      @if (indice === indiceAtual()) {
+
+      <p class="frase"
+         [style.color]="mensagem.cor"
+         animate.enter="mensagem-entrando"
+         animate.leave="mensagem-saindo">
+
+        <span class="aspas">“</span>
+
+        {{ mensagem.texto }}
+
+        <span class="aspas">”</span>
 
       </p>
+      }
+      }
+
+    </div>
+
+    <div class="controles"
+         aria-label="Seleção de mensagens">
+
+      @for (
+      mensagem of mensagens;
+      track mensagem.id;
+      let indice = $index
+      ) {
+
+      <button type="button"
+              class="indicador"
+              [class.ativo]="indice === indiceAtual()"
+              [attr.aria-label]="'Exibir mensagem ' + (indice + 1)"
+              [attr.aria-current]="
+          indice === indiceAtual()
+            ? 'true'
+            : null
+        "
+              (click)="selecionarMensagem(indice)">
+      </button>
+      }
+
+      <button type="button"
+              class="botao-pausa"
+              [attr.aria-label]="
+        pausado()
+          ? 'Continuar mensagens'
+          : 'Pausar mensagens'
+      "
+              [attr.aria-pressed]="pausado()"
+              (click)="alternarPausa()">
+
+        <span aria-hidden="true">
+          {{ pausado() ? '▶' : '❚❚' }}
+        </span>
+
+      </button>
 
     </div>
 
@@ -82,125 +140,6 @@
 
           <div class="col-12 col-sm-6 col-lg-3"
                *ngFor="let item of produtos">
-
-            <!-- CARD -->
-            <!--<div class="mandala-card">-->
-            <!-- IMAGEM -->
-            <!--<div class="image-wrapper">
-
-    <img [src]="uploadsUrl + item.imagemUrl"
-         [alt]="item.nome"
-         class="mandala-img">-->
-            <!-- FAVORITO -->
-            <!--<button class="favorite-btn">
-
-      <i class="bi bi-heart"></i>
-
-    </button>
-
-  </div>-->
-            <!-- CONTEÚDO -->
-            <!--<div class="card-content">-->
-            <!-- CATEGORIA -->
-            <!--<div class="mandala-category">
-
-    {{ item.categoria }}
-
-  </div>-->
-            <!-- TÍTULO -->
-            <!--<h2 class="mandala-title">
-
-    {{ item.nome }}
-
-  </h2>-->
-            <!-- PREÇO -->
-            <!--<div class="mandala-price">
-
-    {{ item.preco | currency:'R$ ' }}
-
-  </div>-->
-            <!-- LINHA -->
-            <!--<div class="card-divider"></div>-->
-            <!-- AÇÕES -->
-            <!--<div class="card-actions">-->
-            <!-- DETALHES -->
-            <!--<button class="btn-details" (click)="abrirproduto(item)">
-
-    <i class="bi bi-eye"></i>
-
-    Ver detalhes
-
-  </button>-->
-            <!-- CARRINHO -->
-            <!--<button class="btn-cart"
-                (click)="adicionarCarrinho(item)">
-
-          <i class="bi bi-cart"></i>
-
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>-->
-
-            <!--<div class="card-mandala">
-              <div class="produto-img-container">
-                <img [src]="uploadsUrl + item.imagemUrl"
-                     [alt]="item.nome"
-                     class="produto-img">
-              </div>
-
-              <div class="p-3">
-
-                <div class="mandala-category">
-
-                  {{ item.categoria }}
-
-                </div>
-
-                <h3 class="mandala-title">
-
-                  {{ item.nome }}
-
-                </h3>
-
-                <div class="mandala-price mb-3">
-
-                  {{ item.preco  | currency:'R$ ' }}
-
-                </div>
-
-                <div class="d-flex gap-2">
-
-                  <button class="btn-outline-mandala flex-grow-1" (click)="abrirproduto(item)">
-
-                    <i class="bi bi-eye"></i>
-
-                    Ver detalhes
-
-                  </button>
-                  <div *ngIf="produtoAdicionado === item.id"
-                       class="add-feedback">
-
-                    <i class="bi bi-check-circle-fill"></i>
-
-                    Adicionado ao carrinho
-
-                  </div>
-                  <button class="btn-cart"
-                          (click)="adicionarCarrinho(item)">
-
-                    <i class="bi bi-cart"></i>
-
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>-->
 
             <div class="produto-card">
 
@@ -265,7 +204,7 @@
    </div>
 
   </section>
-  <section class="gallery-section">
+  <!--<section class="gallery-section">
 
     <div class="container">
 
@@ -311,4 +250,4 @@
 
     </div>
 
-  </section>
+  </section>-->

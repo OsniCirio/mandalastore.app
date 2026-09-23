@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
 import { DrawerService } from '../../pages/cart-drawer/Services/drawer.service';
+import { FavoritoService } from '../../services/favorito-service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +13,14 @@ import { DrawerService } from '../../pages/cart-drawer/Services/drawer.service';
 })
 export class NavbarComponent implements OnInit {
   cartCount = 0;
+
   constructor(private cartService: CartService,
-    private drawerService: DrawerService) { }
+    private drawerService: DrawerService,
+    public favoritoService: FavoritoService) { }
 
   ngOnInit(): void {
 
+   
     this.cartService.cartCount
       .subscribe(count => {
 

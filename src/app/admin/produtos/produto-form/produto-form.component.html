@@ -97,27 +97,48 @@
 
             <div class="col-md-3 mb-3">
               <label>Peso</label>
-              <input  type="text"
-                    formControlName="peso"
-                    mask="separator.3"
-                    thousandSeparator="."
-                    decimalMarker=","
-                    class="form-control input-soft">
+              <input type="text"
+                     formControlName="peso"
+                     mask="separator.3"
+                     thousandSeparator="."
+                     decimalMarker=","
+                     class="form-control input-soft">
             </div>
 
           </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>Tema</label>
+              <select id="temaId"
+                      class="form-select"
+                      formControlName="temaId">
 
+                <option value="">
+                  Selecione uma categoria
+                </option>
 
-          <div class="form-check mt-3">
-            <input type="checkbox" class="form-check-input" formControlName="ativo">
-            <label class="form-check-label">
-              Produto ativo
-            </label>
+                @for (tema of temas(); track tema.id) {
+
+                <option [value]="tema.id">
+                  {{ tema.tema_Nome }}
+                </option>
+
+                }
+
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-check mt-3">
+                <input type="checkbox" class="form-check-input" formControlName="ativo">
+                <label class="form-check-label">
+                  Produto ativo
+                </label>
+              </div>
+             </div>
+           </div>
           </div>
 
         </div>
-
-      </div>
 
       <div class="col-lg-4">
 

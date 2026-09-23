@@ -1,0 +1,276 @@
+
+
+<section class="materiais-section">
+
+  <div class="container">
+
+    <div class="materiais-header text-center">
+
+      <span class="materiais-subtitulo">
+        Feito com significado
+      </span>
+
+      <h2>Da matéria-prima à mandala</h2>
+
+      <p>
+        Conheça alguns dos materiais que dão forma,
+        textura e personalidade às nossas peças.
+      </p>
+
+    </div>
+
+    <div class="row g-4 justify-content-center">
+
+      <div *ngFor="let material of materiais"
+           class="col-12 col-sm-6 col-lg-3">
+
+        <article class="material-card">
+
+          <div class="material-image">
+
+            <img [src]="material.imagem"
+                 [alt]="material.titulo">
+
+          </div>
+
+          <div class="material-body">
+
+            <span class="material-tag">
+              {{ material.subtitulo }}
+            </span>
+
+            <h3>
+              {{ material.titulo }}
+            </h3>
+
+            <button type="button"
+                    class="material-link"
+                    (click)="abrirMaterial(material)">
+
+              Conheça
+
+              <i class="bi bi-arrow-right"></i>
+
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!--<section class="materiais-section">
+
+  <div class="container">-->
+
+    <!-- Cabeçalho -->
+    <!--<div class="materiais-header text-center">
+
+      <span class="materiais-subtitulo">
+        Feito com significado
+      </span>
+
+      <h2>Da matéria-prima à mandala</h2>
+
+      <p>
+        Conheça alguns dos materiais que dão forma,
+        textura e personalidade às nossas peças.
+      </p>
+
+    </div>-->
+
+
+    <!-- Cards -->
+    <!--<div class="row g-4 justify-content-center">-->
+
+      <!-- PEDRAS NATURAIS -->
+      <!--<div class="col-12 col-sm-6 col-lg-3">
+
+        <article class="material-card">
+
+          <div class="material-image">
+            <img src="assets/materiais/pedras-naturais.png"
+                 alt="Pedras naturais utilizadas nas mandalas">
+          </div>
+
+          <div class="material-body">
+
+            <span class="material-tag">
+              Natural
+            </span>
+
+            <h3>Pedras Naturais</h3>
+
+            <p>
+              Cores, formas e texturas únicas que tornam
+              cada composição ainda mais especial.
+            </p>
+
+            <button type="button"
+                    class="material-link">
+              Conheça
+              <i class="bi bi-arrow-right"></i>
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>-->
+
+
+      <!-- JUTA -->
+      <!--<div class="col-12 col-sm-6 col-lg-3">
+
+        <article class="material-card">
+
+          <div class="material-image">
+            <img src="assets/materiais/fio_juta.png"
+                 alt="Fio de juta utilizado na confecção das mandalas">
+          </div>
+
+          <div class="material-body">
+
+            <span class="material-tag">
+              Artesanal
+            </span>
+
+            <h3>Fio de Juta</h3>
+
+            <p>
+              Uma fibra de aspecto natural que acrescenta
+              textura e personalidade à composição.
+            </p>
+
+            <button type="button"
+                    class="material-link">
+              Conheça
+              <i class="bi bi-arrow-right"></i>
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>-->
+
+
+      <!-- CETIM -->
+      <!--<div class="col-12 col-sm-6 col-lg-3">
+
+        <article class="material-card">
+
+          <div class="material-image">
+            <img src="assets/materiais/fio_cetim.png"
+                 alt="Fio de cetim utilizado nas mandalas">
+          </div>
+
+          <div class="material-body">
+
+            <span class="material-tag">
+              Delicadeza
+            </span>
+
+            <h3>Fio de Cetim</h3>
+
+            <p>
+              Seu acabamento suave e brilhante acrescenta
+              delicadeza e contraste às peças.
+            </p>
+
+            <button type="button"
+                    class="material-link">
+              Conheça
+              <i class="bi bi-arrow-right"></i>
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>-->
+
+
+      <!-- MDF -->
+      <!--<div class="col-12 col-sm-6 col-lg-3">
+
+        <article class="material-card">
+
+          <div class="material-image">
+            <img src="assets/materiais/mdf.png"
+                 alt="Base de MDF utilizada na estrutura das mandalas">
+          </div>
+
+          <div class="material-body">
+
+            <span class="material-tag">
+              Estrutura
+            </span>
+
+            <h3>Base em MDF</h3>
+
+            <p>
+              Uma base estruturada que proporciona firmeza
+              e estabilidade à composição da mandala.
+            </p>
+
+            <button type="button"
+                    class="material-link">
+              Conheça
+              <i class="bi bi-arrow-right"></i>
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>-->
+<div *ngIf="materialSelecionado"
+     class="material-modal"
+     (click)="fecharMaterial()">
+
+  <div class="material-modal-content"
+       (click)="$event.stopPropagation()">
+
+    <button type="button"
+            class="material-modal-close"
+            (click)="fecharMaterial()"
+            aria-label="Fechar">
+
+      <i class="bi bi-x-lg"></i>
+
+    </button>
+
+    <div class="material-modal-image">
+
+      <img [src]="materialSelecionado.imagem"
+           [alt]="materialSelecionado.titulo">
+
+    </div>
+
+    <span class="material-tag">
+      {{ materialSelecionado.subtitulo }}
+    </span>
+
+    <h2>
+      {{ materialSelecionado.titulo }}
+    </h2>
+
+    <p>
+      {{ materialSelecionado.descricao }}
+    </p>
+
+  </div>
+
+</div>

@@ -17,19 +17,19 @@ export class PaymentService {
   ) { }
 
   gerarPix(data: any) {
-
+    
     return this.http.post(
 
-      `${this.api}/pix`,
+      `${this.api}/pix/${data}`,
 
       data
     );
   }
-  status(paymentId: number) {
+  status(pedidoId: string, paymentId: number) {
 
     return this.http.get(
 
-      `${this.api}/status/${paymentId}`
+      `${this.api}/status/${pedidoId}/${paymentId}`
     );
   }
 }

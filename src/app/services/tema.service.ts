@@ -11,7 +11,7 @@ import { TemaModel } from '../models/tema.model';
 
 export class TemaService {
   private api =
-    `${environment.apiUrl}/tema`;
+    `${environment.apiUrl}/Tema`;
 
   constructor(
     private http: HttpClient
@@ -21,7 +21,7 @@ export class TemaService {
     return this.http.get<any>(
       `${this.api}/getall`);
   }
-  listaCategoriaProduto(): Observable<any> {
+  listaTemaProduto(): Observable<any> {
     return this.http.get<any>(
       `${this.api}/temaProduto`);
   }

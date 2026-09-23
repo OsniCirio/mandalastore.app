@@ -15,6 +15,8 @@ import {
 } from 'ngx-mask';
 import { CategoriaService } from '../../../services/categoria.service';
 import { CategoriaModel } from '../../../models/categoria.model';
+import { TemaModel } from '../../../models/tema.model';
+import { TemaService } from '../../../services/tema.service';
 
 @Component({
   selector: 'app-product-form',
@@ -26,6 +28,7 @@ import { CategoriaModel } from '../../../models/categoria.model';
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
 
+
   @ViewChild('video') video!: ElementRef<HTMLVideoElement>;
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;
 
@@ -33,13 +36,15 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   productId: string | null = null;
   editMode = false;
   loading = false;
-  
+
 
   selectedFile: File | null = null;
   previewImage: string | null = null;
 
   categorias = signal<CategoriaModel[]>([]);
+  temas = signal<TemaModel[]>([]);
   carregandoCategorias = signal<boolean>(false);
+  carregandoTemas = signal<boolean>(false);
 
   cameraActive = false;
   private stream: MediaStream | null = null;
@@ -47,6 +52,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private productService: ProdutoService,
+    private temaService: TemaService,
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
@@ -57,6 +63,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.createForm();
 
     this.carregarCategorias();
+    this.carregarTemas();
+
 
     this.productId = this.route.snapshot.paramMap.get('id');
     this.editMode = !!this.productId;
@@ -82,6 +90,22 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         }
       });
   }
+  carregarTemas(): void {
+
+    this.carregandoTemas.set(true);
+
+    this.temaService.listar()
+      .subscribe({
+        next: tema => {
+        this.temas.set(tema);
+        this.carregandoTemas.set(false);
+      },
+        error: erro => {
+          console.error(erro);
+          this.carregandoTemas.set(false);
+        }
+      });
+  }
   ngOnDestroy(): void {
     this.stopCamera();
   }
@@ -94,6 +118,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       descricao: ['', Validators.required],
 
       categoriaId: ['', Validators.required],
+
+      temaId: [''],
 
       preco: [0, Validators.required],
 
@@ -293,7 +319,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       'categoriaId',
       this.form.value.categoriaId
     );
-
+    formData.append(
+      'TemaId',
+      this.form.value.temaId
+    );
     formData.append(
       'preco',
       this.form.value.preco
