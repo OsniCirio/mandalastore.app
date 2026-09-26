@@ -3,7 +3,7 @@ import { CartItem } from '../../models/cart-item.model';
 import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { environment } from '../../app.config';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-carrinho',

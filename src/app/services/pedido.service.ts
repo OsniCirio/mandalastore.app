@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PedidoService {
 
-  api =
-    'https://localhost:7071/api/pedido';
+  private api =
+    `${environment.apiUrl}/pedido`;
 
   constructor(
     private http: HttpClient

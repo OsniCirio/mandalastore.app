@@ -3,7 +3,7 @@ import { ProdutoService } from '../../services/produto.service';
 import { FavoritoService } from '../../services/favorito-service';
 import { Produto } from '../../models/produto.model';
 import { CurrencyPipe } from '@angular/common';
-import { environment } from '../../app.config';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-favoritos',

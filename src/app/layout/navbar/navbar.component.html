@@ -4,7 +4,7 @@
 
     <!-- Logo -->
     
-    <a class="navbar-brand brand-title">
+    <a class="navbar-brand brand-title" (click)="fecharMenu()">
 
       <span class="brand-main">
         Mandalas
@@ -19,83 +19,97 @@
     <!-- Botão mobile -->
     <button class="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menu">
+            [class.aberto]="menuAberto"
+            [attr.aria-expanded]="menuAberto"
+            aria-controls="menu"
+            aria-label="Abrir menu"
+            (click)="alternarMenu()">
 
-      <span class="navbar-toggler-icon"></span>
+      <span class="hamburger-linha"></span>
+      <span class="hamburger-linha"></span>
+      <span class="hamburger-linha"></span>
 
     </button>
 
     <!-- Menu -->
-    <div class="collapse navbar-collapse"
-         id="menu">
+     <div class="navbar-collapse menu-angular"
+           [class.menu-aberto]="menuAberto"
+           id="menu">
 
-      <ul class="navbar-nav ms-auto align-items-center gap-3">
+        <ul class="navbar-nav ms-auto align-items-center gap-3">
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">
-            Início
-          </a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" (click)="fecharMenu()">
+              Início
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link">
-            Mandalas
-          </a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="fecharMenu()">
+              Mandalas
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link">
-            Sobre
-          </a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="fecharMenu()">
+              Sobre
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link">
-            Contato
-          </a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="fecharMenu()">
+              Contato
+            </a>
+          </li>
 
-        <li class="nav-item">
+          <li class="nav-item">
 
-          <button class="btn btn-outline-mandala">
-            Entrar
-          </button>
+            <button class="btn btn-outline-mandala">
+              Entrar
+            </button>
 
-        </li>
-        <li class="nav-item">
-          <a routerLink="/favoritos">
-            <i class="bi bi-heart-fill favorito-ativo"></i>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/favoritos"
+               class="nav-link nav-icon-link"
+               (click)="fecharMenu()">
 
-            @if (favoritoService.favoritos().length > 0) {
-            <span>
-              {{ favoritoService.favoritos().length }}
-            </span>
-            }
-          </a>
-         </li>
-        <li class="nav-item">
+              <i class="bi bi-heart-fill favorito-ativo"></i>
 
-          <button class="btn-cart-navbar favorito-ativo"
-                  (click)="openCart()">
+              <span class="mobile-label">
+                Favoritos
+              </span>
 
-            <i class="bi bi-cart3"></i>
+              @if (favoritoService.favoritos().length > 0) {
+              <span>
+                {{ favoritoService.favoritos().length }}
+              </span>
+              }
 
-            <span *ngIf="cartCount > 0"
-                  class="cart-badge">
+            </a>
+          </li>
+          <li class="nav-item">
 
-              {{ cartCount }}
+            <button class="btn-cart-navbar favorito-ativo"
+                    (click)="openCart()">
 
-            </span>
+              <i class="bi bi-cart3"></i>
 
-          </button>
+              <span *ngIf="cartCount > 0"
+                    class="cart-badge">
 
-        </li>
+                {{ cartCount }}
 
-      </ul>
+              </span>
+
+            </button>
+
+          </li>
+
+        </ul>
+
+      </div>
 
     </div>
-
-  </div>
 
 </nav>

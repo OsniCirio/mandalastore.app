@@ -3,7 +3,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild, signal } from '@an
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProdutoService } from '../../../services/produto.service';
-import { environment } from '../../../app.config';
+import { environment } from '../../../environments/environment';
 import { ToastrService }  from 'ngx-toastr';
 import { MaskDirective } from '../../../shared/directives/mask';
 import { DecimalMaskDirective } from '../../../shared/directives/app-decimal-mask';

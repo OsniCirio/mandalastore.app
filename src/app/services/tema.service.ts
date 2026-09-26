@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { environment } from '../app.config';
+import { environment } from '../environments/environment';
 import { TemaModel } from '../models/tema.model';
 
 
@@ -10,6 +10,7 @@ import { TemaModel } from '../models/tema.model';
 })
 
 export class TemaService {
+
   private api =
     `${environment.apiUrl}/Tema`;
 

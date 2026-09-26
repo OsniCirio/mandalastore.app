@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,7 @@ import { FavoritoService } from '../../services/favorito-service';
 })
 export class NavbarComponent implements OnInit {
   cartCount = 0;
+  menuAberto = false;
 
   constructor(private cartService: CartService,
     private drawerService: DrawerService,
@@ -31,4 +32,14 @@ export class NavbarComponent implements OnInit {
 
     this.drawerService.open();
   }
+
+
+  alternarMenu(): void {
+    this.menuAberto = !this.menuAberto;
+  }
+
+  fecharMenu(): void {
+    this.menuAberto = false;
+  }
+
 }

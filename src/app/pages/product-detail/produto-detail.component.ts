@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, signal } from '@angular/co
 import { ProdutoService } from '../../services/produto.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProdutoDetalheDto } from '../../models/produto.model';
-import { environment } from '../../app.config';
+import { environment } from '../../environments/environment';
 import {
   NgxMaskDirective,
   NgxMaskPipe,

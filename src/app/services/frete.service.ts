@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 import { calcularFreteDto } from '../models/pedido.model';
 
 @Injectable({
@@ -7,8 +8,9 @@ import { calcularFreteDto } from '../models/pedido.model';
 })
 export class FreteService {
 
-    private api =
-    'https://localhost:7071/api/frete';
+
+  private api =
+    `${environment.apiUrl}/frete`;
 
   constructor(
     private http: HttpClient

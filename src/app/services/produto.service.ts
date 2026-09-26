@@ -8,7 +8,7 @@ import { Observable }
   from 'rxjs';
 
 import { Produto, ProdutoDetalheDto } from '../models/produto.model';
-import { environment } from '../app.config';
+import { environment } from '../environments/environment';
 
 
 

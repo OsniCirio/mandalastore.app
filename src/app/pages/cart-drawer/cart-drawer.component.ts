@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { CartItem } from '../../models/cart-item.model';
-import { environment } from '../../app.config';
+import { environment } from '../../environments/environment';
 import { CartService } from '../../core/services/cart.service';
 import { DrawerService } from './Services/drawer.service';
 import { Router, RouterLink } from '@angular/router';

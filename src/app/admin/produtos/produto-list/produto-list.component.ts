@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
-import { environment } from '../../../app.config';
+import { environment } from '../../../environments/environment';
 import { ProdutoService } from '../../../services/produto.service';
 
 @Component({
