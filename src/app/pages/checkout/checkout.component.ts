@@ -380,7 +380,7 @@ export class CheckoutComponent implements OnInit {
 
 
     this._calculando.cepDestino = cep;
-    debugger;
+ 
     this._calculando.produtos = [];
     this.cartItems.forEach(item => {
       this._calculando.produtos.push({ id: item.id,peso: item.peso, altura: item.altura, largura: item.largura, comprimento: item.comprimento, valor: item.preco, quantidade: item.quantidade });

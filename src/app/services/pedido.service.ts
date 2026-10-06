@@ -32,6 +32,7 @@ export class PedidoService {
     );
   }
   criarEnvio(pedidoId: string) {
+    
     return this.http.post(
       `${this.api}/${pedidoId}/etiqueta`,
       {}
@@ -45,7 +46,7 @@ export class PedidoService {
     );
   }
   enviarEtiqueta(id: string) {
-
+    
     return this.http.post(
       `${this.api}/${id}/etiqueta`,
       {}

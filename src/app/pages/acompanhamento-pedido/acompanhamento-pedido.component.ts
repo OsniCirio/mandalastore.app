@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -23,27 +23,28 @@ export class AcompanhamentoPedidoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private pedidoService: PedidoService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
 
     this.pedidoId =
-      this.route.snapshot.paramMap.get('pedidoId')!;
-
-    this.carregarPedido();
+      this.route.snapshot.paramMap.get('id')!;
+      this.carregarPedido();
   }
 
   carregarPedido(): void {
 
     this.carregando = true;
-
     this.pedidoService.getById(this.pedidoId)
       .subscribe({
 
         next: (pedido: Pedido) => {
           this.pedido = pedido;
           this.carregando = false;
+          this.cd.detectChanges();
+
         },
 
         error: (error) => {
