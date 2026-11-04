@@ -4,8 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { PedidoService } from '../../services/pedido.service';
-import { Pedido } from '../../models/pedido.model';
-
+import { AcompanhamentoPedido } from '../../models/acompanhamento-pedido.model';
 
 @Component({
   selector: 'app-acompanhamento-pedido',
@@ -16,8 +15,8 @@ import { Pedido } from '../../models/pedido.model';
 })
 export class AcompanhamentoPedidoComponent implements OnInit {
 
-  pedido?: Pedido;
-  pedidoId!: string;
+  pedido?: AcompanhamentoPedido;
+  token!: string;
   carregando = false;
 
   constructor(
@@ -29,34 +28,40 @@ export class AcompanhamentoPedidoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.pedidoId =
-      this.route.snapshot.paramMap.get('id')!;
-      this.carregarPedido();
+    const token = this.route.snapshot.paramMap.get('token');
+
+    if (!token) {
+      this.toastr.error('Link de acompanhamento inválido.');
+      return;
+    }
+
+    this.token = token;
+    this.carregarPedido();
   }
 
   carregarPedido(): void {
 
     this.carregando = true;
-    this.pedidoService.getById(this.pedidoId)
+
+    this.pedidoService.getAcompanhamento(this.token)
       .subscribe({
 
-        next: (pedido: Pedido) => {
+        next: (pedido: AcompanhamentoPedido) => {
           this.pedido = pedido;
           this.carregando = false;
           this.cd.detectChanges();
-
         },
 
         error: (error) => {
-          console.error(
-            'Erro ao carregar pedido:',
-            error
-          );
+          console.error('Erro ao carregar pedido:', error);
 
           this.carregando = false;
+          this.cd.detectChanges();
 
           this.toastr.error(
-            'Não foi possível carregar seu pedido.'
+            error.status === 404
+              ? 'Link de acompanhamento inválido ou expirado.'
+              : 'Não foi possível carregar seu pedido.'
           );
         }
 
@@ -64,13 +69,14 @@ export class AcompanhamentoPedidoComponent implements OnInit {
   }
 
   get etapaAtual(): number {
-
     switch (this.pedido?.status) {
-
       case 'Pendente':
         return 1;
 
       case 'Pago':
+        return 2;
+
+      case 'PreparandoEnvio':
       case 'EtiquetaGerada':
         return 3;
 

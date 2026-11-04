@@ -31,7 +31,7 @@ export const routes: Routes = [
     component: CartComponent
   },
   {
-    path: 'acompanhar-pedido/:id',
+    path: 'acompanhar-pedido/:token',
     component: AcompanhamentoPedidoComponent
   },
   {

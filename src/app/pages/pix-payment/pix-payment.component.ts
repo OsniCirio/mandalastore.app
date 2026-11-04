@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { PaymentService } from '../../services/payment.service';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
@@ -11,13 +11,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './pix-payment.component.html',
   styleUrl: './pix-payment.component.css',
 })
-export class PixPaymentComponent {
+export class PixPaymentComponent implements OnDestroy {
   pix: any;
 
   loading = false;
   pedidoId: string | null = null;
   paymentId!: number;
+  private intervaloPagamento?: ReturnType<typeof setInterval>;
 
+  ngOnDestroy(): void {
+    this.pararMonitoramento();
+  }
   constructor(
     private paymentService:
       PaymentService,
@@ -74,6 +78,7 @@ export class PixPaymentComponent {
               'approved'
             ) {
 
+              this.pararMonitoramento();
 
               this.toastr.success(
                 'Pagamento aprovado. Pedido enviado para expedição.'
@@ -87,5 +92,11 @@ export class PixPaymentComponent {
         });
 
     }, 5000);
+  }
+  pararMonitoramento(): void {
+    if (this.intervaloPagamento !== undefined) {
+      clearInterval(this.intervaloPagamento);
+      this.intervaloPagamento = undefined;
+    }
   }
 }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { AcompanhamentoPedido } from '../models/acompanhamento-pedido.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -64,6 +66,11 @@ export class PedidoService {
     return this.http.post<{ mensagem: string; url: string }>(
       `${this.api}/${pedidoId}/imprimir-etiqueta`,
       {}
+    );
+  }
+  getAcompanhamento(token: string): Observable<AcompanhamentoPedido> {
+    return this.http.get<AcompanhamentoPedido>(
+      `${environment.apiUrl}/Pedido/acompanhamento/${encodeURIComponent(token)}`
     );
   }
 }
