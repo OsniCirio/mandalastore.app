@@ -2,9 +2,6 @@
 name: Publish MandalaStore Web
 
 on:
-  push:
-    branches:
-      - develop
   workflow_dispatch:
 
 permissions:
@@ -13,6 +10,7 @@ permissions:
 
 jobs:
   publish:
+    name: Publicar imagem de homologacao
     runs-on: ubuntu-latest
 
     steps:
@@ -35,4 +33,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/osnicirio/mandalastore-web:hml
+          tags: |
+            ghcr.io/osnicirio/mandalastore-web:hml
+            ghcr.io/osnicirio/mandalastore-web:${{ github.sha }}
