@@ -1,0 +1,48 @@
+<div class="form-page">
+
+  <div class="form-header">
+    <div>
+      <p class="section-small">Administração</p>
+
+      <h1 class="section-title">
+        {{ editMode ? 'Editar Tema mandala' : 'Nova Tema Mandala' }}
+      </h1>
+    </div>
+
+    <a routerLink="/admin" class="btn-outline-soft">
+      Voltar
+    </a>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+
+    <div class="row g-4">
+
+      <div class="col-lg-8">
+
+        <div class="form-card">
+
+          <div class="mb-3">
+            <label>Nome</label>
+            <input class="form-control input-soft" formControlName="tema_Nome">
+          </div>
+          <div class="mb-3">
+            <label>Ordem</label>
+            <input type="number" class="form-control input-soft" formControlName="ordem">
+          </div>
+          <button routerLink="/admin" type="button"
+                  class="btn-cancel">
+            Cancelar
+          </button>
+          <button type="submit"
+                  class="btn-save">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+

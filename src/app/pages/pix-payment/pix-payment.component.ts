@@ -1,7 +1,9 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { PaymentService } from '../../services/payment.service';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { PedidoService } from '../../services/pedido.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pix-payment',
@@ -9,59 +11,53 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './pix-payment.component.html',
   styleUrl: './pix-payment.component.css',
 })
-export class PixPaymentComponent {
+export class PixPaymentComponent implements OnDestroy {
   pix: any;
 
   loading = false;
-
+  pedidoId: string | null = null;
   paymentId!: number;
+  private intervaloPagamento?: ReturnType<typeof setInterval>;
 
+  ngOnDestroy(): void {
+    this.pararMonitoramento();
+  }
   constructor(
     private paymentService:
       PaymentService,
     private toastr: ToastrService,
+    private pedido: PedidoService,
+    private route: ActivatedRoute,
+    private router: Router,
    private cd: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
 
+    this.pedidoId = this.route.snapshot.paramMap.get('id');
     this.gerarPix();
   }
 
   gerarPix() {
 
-   
     this.loading = true;
 
     this.paymentService
-      .gerarPix({
-
-        valor: 1,
-
-        email: 'teste@teste.com',
-
-        nome: 'Osni'
-      })
-
+      .gerarPix(this.pedidoId)
       .subscribe({
 
-        next: (response : any) => {
-
-
-          this.paymentId =
-            response.paymentId;
-
+        next: (response: any) => {
+          debugger;
+          this.paymentId = response.paymentId;
           this.pix = response;
 
           this.loading = false;
           this.cd.detectChanges();
 
           this.startPolling();
-
         },
 
         error: () => {
-
           this.loading = false;
         }
       });
@@ -71,7 +67,7 @@ export class PixPaymentComponent {
     setInterval(() => {
 
       this.paymentService
-        .status(this.paymentId)
+        .status(this.pedidoId!,this.paymentId)
 
         .subscribe({
 
@@ -82,13 +78,25 @@ export class PixPaymentComponent {
               'approved'
             ) {
 
+              this.pararMonitoramento();
+
               this.toastr.success(
-                'Pagamento aprovado!'
+                'Pagamento aprovado. Pedido enviado para expedição.'
               );
+
+              this.router.navigate(['/acompanhar-pedido', this.pedidoId]);
+
+             
             }
           }
         });
 
     }, 5000);
+  }
+  pararMonitoramento(): void {
+    if (this.intervaloPagamento !== undefined) {
+      clearInterval(this.intervaloPagamento);
+      this.intervaloPagamento = undefined;
+    }
   }
 }

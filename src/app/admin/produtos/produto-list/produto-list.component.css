@@ -42,3 +42,16 @@
 .btn-group .btn {
   border-radius: 10px;
 }
+.btn-nova-mandala {
+  background: #879b80;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: 500;
+}
+
+  .btn-nova-mandala:hover {
+    background: #748b6d;
+    color: white;
+  }

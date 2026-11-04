@@ -1,0 +1,128 @@
+<div class="form-page">
+
+  <div class="form-header">
+    <div>
+      <p class="section-small">Administração</p>
+
+      <h1 class="section-title">
+        Lista de Categoria Mandalas
+      </h1>
+    </div>
+
+    <a routerLink="/admin/produtos" class="btn-outline-soft">
+      Voltar
+    </a>
+  </div>
+
+    <div class="row g-4">
+
+      <div class="col-lg-8">
+
+        <div class="form-card">
+
+          <div class="mb-3">
+            <label>Pesquisar </label>
+            <input type="text"
+                   class="form-control"
+                   [formControl]="pesquisa"
+                   placeholder="Pesquisar categoria...">
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-save" (click)="novo()">
+              <i class="bi bi-plus-lg"></i>
+              Novo
+            </button>
+          </div>
+
+        </div>
+        <div class="categoria-grid-card">
+
+          @if (categoriasFiltradas.length > 0) {
+
+          <div class="table-responsive">
+
+            <table class="categoria-table">
+
+              <thead>
+                <tr>
+                  <th>Categoria</th>
+                  <th class="text-center">Produtos</th>
+                  <th class="text-end">Ações</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                @for (categoria of categoriasFiltradas; track categoria.id) {
+
+                <tr>
+
+                  <td>
+                    <div class="categoria-nome">
+                      {{ categoria.categoria_Nome }}
+                    </div>
+                  </td>
+
+                  <td class="text-center">
+                    <span class="produto-count">
+                      {{ categoria.quantidadeProdutos }}
+                    </span>
+                  </td>
+                  <td>
+
+                    <div class="acoes">
+
+                      <button type="button"
+                              class="btn-acao"
+                              title="Editar"
+                              (click)="editar(categoria.id)">
+
+                        <i class="bi bi-pencil"></i>
+
+                      </button>
+
+                      <button type="button"
+                              class="btn-acao excluir"
+                              title="Excluir"
+                              (click)="excluir(categoria)">
+
+                        <i class="bi bi-trash"></i>
+
+                      </button>
+
+                    </div>
+
+                  </td>
+
+                </tr>
+
+                }
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+          } @else {
+
+          <div class="sem-registros">
+
+            <i class="bi bi-folder2-open"></i>
+
+            <strong>Nenhuma categoria encontrada</strong>
+
+            <span>
+              Tente alterar sua pesquisa ou cadastre uma nova categoria.
+            </span>
+
+          </div>
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+</div>

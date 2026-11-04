@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CartItem } from '../../models/cart-item.model';
-import { environment } from '../../app.config';
+import { environment } from '../../environments/environment';
 import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
 

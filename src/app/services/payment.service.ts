@@ -4,32 +4,34 @@ import { Injectable }
 import { HttpClient }
   from '@angular/common/http';
 
+import { environment } from '../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
 
-  api =
-    'https://localhost:7071/api/Pagamento';
+  private api =
+    `${environment.apiUrl}/Pagamento`;
 
   constructor(
     private http: HttpClient
   ) { }
 
   gerarPix(data: any) {
-
+    
     return this.http.post(
 
-      `${this.api}/pix`,
+      `${this.api}/pix/${data}`,
 
       data
     );
   }
-  status(paymentId: number) {
+  status(pedidoId: string, paymentId: number) {
 
     return this.http.get(
 
-      `${this.api}/status/${paymentId}`
+      `${this.api}/status/${pedidoId}/${paymentId}`
     );
   }
 }

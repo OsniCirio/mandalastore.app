@@ -1,22 +1,37 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef, Component, OnInit,
+  afterNextRender,
+  ChangeDetectionStrategy,
+  computed,
+  DestroyRef,
+  effect,
+  inject,
+  signal
+} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { ProdutoService } from '../../services/produto.service';
-import { environment } from '../../app.config';
+import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { MateriaisComponent }
+  from '../../components/materiais/materiais.component';
+import { FaixaMensagensComponent } from '../../components/faixa-mensagens/faixa-mensagens.component';
+
+
 
 @Component({
   selector: 'app-home',
   imports: [CommonModule,
-    RouterModule],
+    RouterModule, MateriaisComponent, FaixaMensagensComponent],
 
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
 
+  
   produtos: any[] = [];
   loading = false;
   uploadsUrl = environment.uploadsUrl;
@@ -32,12 +47,12 @@ export class HomeComponent implements OnInit {
       private toastr: ToastrService,
       private router: Router
   )
-  {
+    {
+      
   }
-
+ 
   carregarDestaques(): void {
 
-    this.loading = true;
     
     this.produtoService
       .listarDestaques()

@@ -1,0 +1,73 @@
+  <!-- FRASE -->
+<section class="faixa-mensagens"
+         [style.background-color]="mensagemAtual().fundo"
+         [style.--cor-destaque]="mensagemAtual().destaque">
+
+  <div class="conteudo-mensagem">
+
+    @for (
+    mensagem of mensagens;
+    track mensagem.id;
+    let indice = $index
+    ) {
+
+    @if (indice === indiceAtual()) {
+
+    <p class="frase"
+       [style.color]="mensagem.cor"
+       animate.enter="mensagem-entrando"
+       animate.leave="mensagem-saindo">
+
+      <span class="aspas">“</span>
+
+      {{ mensagem.texto }}
+
+      <span class="aspas">”</span>
+
+    </p>
+    }
+    }
+
+  </div>
+
+  <div class="controles"
+       aria-label="Seleção de mensagens">
+
+    @for (
+    mensagem of mensagens;
+    track mensagem.id;
+    let indice = $index
+    ) {
+
+    <button type="button"
+            class="indicador"
+            [class.ativo]="indice === indiceAtual()"
+            [attr.aria-label]="'Exibir mensagem ' + (indice + 1)"
+            [attr.aria-current]="
+          indice === indiceAtual()
+            ? 'true'
+            : null
+        "
+            (click)="selecionarMensagem(indice)">
+    </button>
+    }
+
+    <button type="button"
+            class="botao-pausa"
+            [attr.aria-label]="
+        pausado()
+          ? 'Continuar mensagens'
+          : 'Pausar mensagens'
+      "
+            [attr.aria-pressed]="pausado()"
+            (click)="alternarPausa()">
+
+      <span aria-hidden="true">
+        {{ pausado() ? '▶' : '❚❚' }}
+      </span>
+
+    </button>
+
+  </div>
+
+</section>

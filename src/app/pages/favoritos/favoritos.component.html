@@ -1,0 +1,78 @@
+<section class="container py-5">
+
+  <div class="mb-4">
+    <span class="subtitulo">SEUS FAVORITOS</span>
+    <h1>Mandalas Favoritas</h1>
+  </div>
+
+  @if (favoritos().length === 0) {
+
+  <div class="text-center py-5">
+
+    <i class="bi bi-heart fs-1"></i>
+
+    <h4 class="mt-3">
+      Você ainda não adicionou favoritos
+    </h4>
+
+    <p class="text-muted">
+      Clique no coração das mandalas que você gostar.
+    </p>
+
+    <a routerLink="/mandalas"
+       class="btn btn-outline-secondary">
+
+      Ver mandalas
+    </a>
+
+  </div>
+
+  } @else {
+
+  <div class="row g-4">
+
+    @for (produto of favoritos(); track produto.id) {
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+      <div class="card produto-card">
+
+        <div class="produto-imagem">
+
+          <img [src]="uploadsUrl + produto.imagemUrl"
+               [alt]="produto.nome"
+               class="card-img-top">
+
+          <button type="button"
+                  class="btn-favorito"
+                  (click)="favoritoService.alternar(produto.id ?? '')">
+
+            <i class="bi bi-heart-fill favorito-ativo"></i>
+
+          </button>
+
+        </div>
+
+        <div class="card-body">
+
+          <h5>
+            {{ produto.nome }}
+          </h5>
+
+          <strong>
+            {{ produto.preco | currency:'BRL' }}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    }
+
+  </div>
+
+  }
+
+</section>

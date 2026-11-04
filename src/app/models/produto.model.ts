@@ -9,6 +9,10 @@ export interface Produto {
 
   categoria: string;
 
+  categoriaId: string;
+
+  temaId: string;
+
   preco: number;
 
   estoque: number;
@@ -24,4 +28,17 @@ export interface Produto {
   ativo: boolean;
 
   imagemUrl?: string;
+}
+export interface ProdutoDetalheDto {
+  id: string;
+  nome: string;
+  descricao: string | null ;
+  preco: number;
+  categoriaId: string;
+  categoria: string | null;
+  temaId: string;
+  tema: string;
+  altura: number;
+  largura: number;
+  imagemUrl: string;
 }

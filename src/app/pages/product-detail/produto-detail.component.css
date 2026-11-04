@@ -9,9 +9,10 @@
 .main-image {
   width: 100%;
   border-radius: 30px;
-  height: 700px;
+
   object-fit: cover;
   box-shadow: var(--shadow);
+
 }
 
 .thumbs {

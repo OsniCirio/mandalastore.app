@@ -2,121 +2,85 @@
 
   <div class="container">
 
+    <div class="col-lg-1 mb-3">
+      <button type="button"
+              class="btn btn-mandala"
+              (click)="voltar()">
+
+        <i class="bi bi-arrow-left"></i>
+        Voltar
+      </button>
+    </div>
     <div class="row g-5 align-items-start">
 
       <!-- GALERIA -->
+      @if(produtoDetalhe(); as produto) {
       <div class="col-lg-7">
 
         <div class="product-gallery">
 
-          <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1200"
+          <img [src]="getImageUrl()"
                class="main-image">
-
-          <div class="thumbs">
-
-            <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1200">
-
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200">
-
-            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200">
-
-          </div>
 
         </div>
 
       </div>
-
-
       <!-- INFORMAÇÕES -->
+
       <div class="col-lg-5">
-
         <p class="product-category">
-          Coleção Harmonia
+          {{ produto.categoria   }}
         </p>
-
         <h1 class="product-title">
-          Mandala Aurora
+          {{ produto.nome}}
         </h1>
-
         <p class="product-price">
-          R$ 289,00
+          {{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
         </p>
-
         <p class="product-description">
-
-          Uma peça artesanal inspirada
-          em equilíbrio, leveza e
-          conexão espiritual.
-
-          Produzida manualmente com
-          acabamento premium e riqueza
-          de detalhes.
-
+          {{ produto.descricao }}
         </p>
-
         <!-- TAMANHOS -->
         <div class="sizes">
-
           <p class="section-label">
-            Tamanho
+            Tamanho  {{ produto.largura }} x {{ produto.altura }} cm
           </p>
-
-          <div class="size-buttons">
-
-            <button>30cm</button>
-            <button>50cm</button>
-            <button>80cm</button>
-
-          </div>
 
         </div>
 
         <!-- BOTÕES -->
         <div class="product-actions">
-
-          <button class="btn-mandala large-btn">
+          <button class="btn-mandala large-btn"
+                  (click)="adicionarCarrinho(produto)"
+                  aria-label="Adicionar ao carrinho">
             Comprar Agora
           </button>
-
-          <button class="btn-outline-soft large-btn">
+          
+          <button class="btn btn-mandala" (click)="adicionarFavorito(produto)"
+                  aria-label="Adicionar aos favoritos">
             Favoritar
           </button>
-
         </div>
-
         <!-- INFO EXTRA -->
         <div class="product-info">
-
           <div class="info-item">
-
             <span>
               ✨ Produção artesanal
             </span>
-
           </div>
-
           <div class="info-item">
-
             <span>
               🌿 Materiais premium
             </span>
-
           </div>
-
           <div class="info-item">
-
             <span>
               🚚 Envio para todo Brasil
             </span>
-
           </div>
-
         </div>
-
       </div>
-
+      }
     </div>
-
   </div>
-
 </section>
