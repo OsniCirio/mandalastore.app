@@ -1,0 +1,84 @@
+name: Publish MandalaStore Web
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: mandalastore-web-hml
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publicar e implantar Angular
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    environment: homologacao
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Validar build Angular
+        run: npm run build
+
+      - name: Login no GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build e Push do Angular
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ghcr.io/osnicirio/mandalastore-web:hml
+            ghcr.io/osnicirio/mandalastore-web:${{ github.sha }}
+
+      - name: Configurar SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST_KEY: ${{ secrets.VPS_HOST_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/mandalastore_deploy
+          chmod 600 ~/.ssh/mandalastore_deploy
+
+          printf '%s %s\n' "$VPS_HOST" "$VPS_HOST_KEY" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Deploy homologacao
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          DEPLOY_SHA: ${{ github.sha }}
+        run: |
+          ssh \
+            -i ~/.ssh/mandalastore_deploy \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            "$VPS_USER@$VPS_HOST" \
+            "deploy-web $DEPLOY_SHA"
